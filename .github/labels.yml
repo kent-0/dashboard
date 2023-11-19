@@ -12,7 +12,7 @@
 
 - name: chore
   color: 'ffffff'
-  description: 'Routine tasks or maintenance work that doesn''t directly affect functionality.'
+  description: "Routine tasks or maintenance work that doesn't directly affect functionality."
 
 - name: ci
   color: '0075ca'
@@ -44,7 +44,7 @@
 
 - name: has PR
   color: '4b1f8e'
-  description: 'Indicates that there''s an active Pull Request associated with the issue.'
+  description: "Indicates that there's an active Pull Request associated with the issue."
 
 - name: help wanted
   color: '008672'

@@ -15,7 +15,7 @@
   "timezone": "UTC",
   "platform": "github",
   "rebaseDelay": 1,
-  "semanticCommits": true,
-  "semanticCommitScope": true,
+  "semanticCommits": "enabled",
+  "semanticCommitScope": "deps",
   "semanticCommitMessage": "chore(release): {{category}}{{scope}}: bump {{package}} from {{oldVersion}} to {{newVersion}}"
 }
