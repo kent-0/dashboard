@@ -15,5 +15,5 @@
   "bumpVersion": "patch",
   "useBaseBranchConfig": "merge",
   "rebaseWhen": "conflicted",
-  "baseBranches": ["main", "next"]
+  "baseBranches": ["next"]
 }
