@@ -10,7 +10,6 @@
   "schedule": ["before 3am on the first day of the month"],
   "timezone": "UTC",
   "platform": "github",
-  "rebaseDelay": 1,
   "semanticCommits": "enabled",
   "semanticCommitScope": "deps",
   "bumpVersion": "patch",
