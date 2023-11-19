@@ -12,9 +12,12 @@
     "lint": "eslint --ext .cjs,.js,.ts,.vue --ignore-path .eslintignore .",
     "lint:fix": "eslint --ext .cjs,.js,.ts,.vue --ignore-path .eslintignore . --fix",
     "format": "prettier --write . --ignore-path .prettierignore",
-    "format:check": "prettier --check . --ignore-path .prettierignore"
+    "format:check": "prettier --check . --ignore-path .prettierignore",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/image": "^1.0.0",
@@ -33,6 +36,7 @@
     "nuxt": "^3.8.1",
     "prettier": "^3.1.0",
     "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "husky": "^8.0.0"
   }
 }
