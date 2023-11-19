@@ -7,15 +7,14 @@
       "automerge": true
     }
   ],
-  "monorepo": {
-    "enabled": true,
-    "prTitlePrefix": "chore(deps):"
-  },
   "schedule": ["before 3am on the first day of the month"],
   "timezone": "UTC",
   "platform": "github",
   "rebaseDelay": 1,
   "semanticCommits": "enabled",
   "semanticCommitScope": "deps",
-  "semanticCommitMessage": "chore(release): {{category}}{{scope}}: bump {{package}} from {{oldVersion}} to {{newVersion}}"
+  "bumpVersion": "patch",
+  "useBaseBranchConfig": "merge",
+  "rebaseWhen": "conflicted",
+  "baseBranches": ["main", "next"]
 }
