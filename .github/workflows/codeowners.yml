@@ -1,8 +1,12 @@
-name: CodeOwners
+name: Code Owners
 
 on:
   schedule:
     - cron: '0 12 * * *'
+
+permissions:
+  issues: write
+  contents: read
 
 jobs:
   generate:
@@ -41,20 +45,29 @@ jobs:
         if: steps.check_changes.outputs.changed == 'true'
         run: |
           echo "# CODEOWNERS" > .github/CODEOWNERS
-
+          
           directories=("app" "components" "lib" "__test__")
-
+          
           for dir in "${directories[@]}"; do
-           if [ -d "$dir" ]; then
-               cd $dir
-
-               for file in $(git ls-files); do
-                   contributors=$(git log --pretty=format:"@%an" $file | sort | uniq | tr '\n' ' ')
-                   echo "$dir/$file $contributors" >> ../.github/CODEOWNERS
-               done
-
-               cd ..
-           fi
+            if [ -d "$dir" ]; then
+              cd $dir
+          
+              for file in $(git ls-files); do
+                contributors=$(git log --pretty=format:"@%an" $file | sort | uniq | tr '\n' ' ')
+          
+                # Filter out contributors with [bot] in their names
+                filtered_contributors=""
+                for contributor in $contributors; do
+                  if [[ "$contributor" != *"[bot]"* ]]; then
+                    filtered_contributors="$filtered_contributors $contributor"
+                  fi
+                done
+          
+                echo "$dir/$file $filtered_contributors" >> ../.github/CODEOWNERS
+              done
+          
+              cd ..
+            fi
           done
 
       - name: Commit and push if changes
