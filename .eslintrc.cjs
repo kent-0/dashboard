@@ -1,5 +1,6 @@
 // @ts-check
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { defineConfig } = require('eslint-define-config');
 
 /// <reference types='@eslint-types/typescript-eslint' />
@@ -17,7 +18,7 @@ module.exports = defineConfig({
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended',
     '@unocss',
-    'plugin:perfectionist/recommended',
+    'plugin:perfectionist/recommended-natural',
   ],
   overrides: [
     {
@@ -37,46 +38,45 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint', 'vue', 'prettier', 'perfectionist'],
   rules: {
-    'prettier/prettier': 'error',
+    '@typescript-eslint/adjacent-overload-signatures': 'off',
+    'import/order': 'off',
     'perfectionist/sort-imports': [
       'error',
       {
-        type: 'natural',
-        order: 'asc',
-        'internal-pattern': ['@/**'],
-        'newlines-between': 'always',
-        groups: [
-          'react',
-          'next',
-          'external',
-          'external-type',
-          'builtin',
-          'parent',
-          'siblings',
-          'components',
-          'images',
-          'hooks',
-          'utils',
-          'directImport',
-          'internal',
-          'internal-type',
-        ],
         'custom-groups': {
           value: {
-            react: ['react', 'react-*'],
-            next: 'next/**',
-            images: ['@/public/**.{png,svg,jpg,jpeg,ico}'],
-            components: '@/components/**',
-            hooks: '@/lib/hooks/**',
-            utils: '@/utils/**',
-            directImport: './**',
+            assets: '~/public/**',
+            components: '~/components/**',
+            composables: '~/composables/**',
+            layouts: '~/layouts/**',
+            middleware: '~/middleware/**',
+            plugins: '~/plugins/**',
+            utils: '~/utils/**',
           },
         },
+        groups: [
+          'assets',
+          'components',
+          'composables',
+          'layouts',
+          'middleware',
+          'utils',
+          'builtin',
+          'internal',
+          'internal-type',
+          'external',
+          'external-type',
+          'parent',
+          'siblings',
+        ],
+        'internal-pattern': ['~/**', '#**'],
+        'newlines-between': 'always',
+        order: 'asc',
+        type: 'natural',
       },
     ],
-    'import/order': 'off',
+    'prettier/prettier': 'error',
     'sort-imports': 'off',
-    '@typescript-eslint/adjacent-overload-signatures': 'off',
     'sort-keys': 'off',
   },
 });
