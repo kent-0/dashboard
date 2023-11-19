@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     fallback: 'light',
     preference: 'system',
   },
+  css: ['@unocss/reset/tailwind-compat.css', '~/assets/css/main.css'],
   devtools: { enabled: true },
-  modules: ['@nuxtjs/eslint-module', '@nuxt/image', '@nuxtjs/color-mode'],
+  modules: ['@nuxtjs/eslint-module', '@nuxt/image', '@nuxtjs/color-mode', '@unocss/nuxt'],
 });
