@@ -2,7 +2,7 @@
 
 const { defineConfig } = require('eslint-define-config');
 
-/// <reference types="@eslint-types/typescript-eslint" />
+/// <reference types='@eslint-types/typescript-eslint' />
 
 module.exports = defineConfig({
     'env': {
@@ -16,7 +16,8 @@ module.exports = defineConfig({
         'plugin:@typescript-eslint/recommended',
         'plugin:vue/vue3-recommended',
         'plugin:prettier/recommended',
-        '@unocss'
+        '@unocss',
+        'plugin:perfectionist/recommended'
     ],
     'overrides': [
         {
@@ -39,9 +40,50 @@ module.exports = defineConfig({
     'plugins': [
         '@typescript-eslint',
         'vue',
-        'prettier'
+        'prettier',
+        'perfectionist'
     ],
     'rules': {
-        'prettier/prettier': 'error'
+        'prettier/prettier': 'error',
+        'perfectionist/sort-imports': [
+            'error',
+            {
+                'type': 'natural',
+                'order': 'asc',
+                'internal-pattern': ['@/**'],
+                'newlines-between': 'always',
+                'groups': [
+                    'react',
+                    'next',
+                    'external',
+                    'external-type',
+                    'builtin',
+                    'parent',
+                    'siblings',
+                    'components',
+                    'images',
+                    'hooks',
+                    'utils',
+                    'directImport',
+                    'internal',
+                    'internal-type'
+                ],
+                'custom-groups': {
+                    'value': {
+                        'react': ['react', 'react-*'],
+                        'next': 'next/**',
+                        'images': ['@/public/**.{png,svg,jpg,jpeg,ico}'],
+                        'components': '@/components/**',
+                        'hooks': '@/lib/hooks/**',
+                        'utils': '@/utils/**',
+                        'directImport': './**'
+                    }
+                }
+            }
+        ],
+        'import/order': 'off',
+        'sort-imports': 'off',
+        '@typescript-eslint/adjacent-overload-signatures': 'off',
+        'sort-keys': 'off'
     }
 });
