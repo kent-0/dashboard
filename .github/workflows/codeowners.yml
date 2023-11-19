@@ -20,7 +20,7 @@ jobs:
         run: |
           directories=("public" "components" "composables" "layouts" "middleware" "plugins" "server" "utils")
           changed=false
-          
+
           for dir in "${directories[@]}"; do
            if git diff --quiet HEAD~1 HEAD -- $dir; then
                echo "No changes in $dir"
@@ -30,29 +30,29 @@ jobs:
                break
            fi
           done
-          
+
           if [ "$changed" = true ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
-          fi        
+          fi
 
       - name: Generate CODEOWNERS file
         if: steps.check_changes.outputs.changed == 'true'
         run: |
           echo "# CODEOWNERS" > .github/CODEOWNERS
-          
+
           directories=("app" "components" "lib" "__test__")
-          
+
           for dir in "${directories[@]}"; do
            if [ -d "$dir" ]; then
                cd $dir
-          
+
                for file in $(git ls-files); do
                    contributors=$(git log --pretty=format:"@%an" $file | sort | uniq | tr '\n' ' ')
                    echo "$dir/$file $contributors" >> ../.github/CODEOWNERS
                done
-          
+
                cd ..
            fi
           done
