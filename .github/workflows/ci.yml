@@ -16,7 +16,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Cache pnpm modules
+      - name: Cache pnpm modules and nuxt build
         uses: actions/cache@v2
         with:
           path: |
@@ -87,4 +87,4 @@ jobs:
         run: pnpm install
 
       - name: Run Prettier Check
-        run: pnpm prettier-check
+        run: pnpm format:check
