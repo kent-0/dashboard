@@ -7,42 +7,52 @@
     >
       {{ error.statusCode }}
     </h1>
-
-    <template v-if="error.statusCode === 404">
-      <h2 class="text-5xl font-semibold font-title animate__animated animate__fadeInUp">
-        Page not found
-      </h2>
-      <h3 class="max-w-2xl text-2xl animate__animated animate__fadeInUp">
-        The page you are looking for might have been removed had its name changed or is temporarily
-        unavailable.
-      </h3>
-    </template>
-
-    <template v-if="error.statusCode === 500">
-      <h2 class="text-5xl font-semibold font-title animate__animated animate__fadeInUp">
-        Server error
-      </h2>
-      <h3 class="max-w-2xl text-2xl animate__animated animate__fadeInUp">
-        An error occurred and your request couldn't be completed. Please try again later.
-      </h3>
-    </template>
-
-    <template v-if="error.statusCode === 503">
-      <h2 class="text-5xl font-semibold font-title animate__animated animate__fadeInUp">
-        Service unavailable
-      </h2>
-      <h3 class="max-w-2xl text-2xl animate__animated animate__fadeInUp">
-        The server is temporarily unable to service your request due to maintenance downtime or
-        capacity problems. Please try again later.
-      </h3>
-    </template>
+    <h2 class="text-5xl font-semibold font-title animate__animated animate__fadeInUp">
+      {{ errorTitle }}
+    </h2>
+    <h4 class="max-w-2xl text-lg animate__animated animate__fadeInUp">
+      {{ errorDescription }}
+    </h4>
   </div>
 </template>
 
 <script setup lang="ts">
   import type { NuxtError } from '#app';
 
-  defineProps<{
+  const props = defineProps<{
     error: NuxtError;
   }>();
+
+  const errorTitle = ref('Unknown error');
+  const errorDescription = ref('An unknown error occurred. Please try again later.');
+
+  switch (props.error.statusCode) {
+    case 404:
+      errorTitle.value = 'Page not found';
+      errorDescription.value =
+        'The page you are looking for might have been removed had its name changed or is temporarily unavailable.';
+      break;
+    case 500:
+      errorTitle.value = 'Server error';
+      errorDescription.value =
+        "An error occurred and your request couldn't be completed. Please try again later.";
+      break;
+    case 503:
+      errorTitle.value = 'Service unavailable';
+      errorDescription.value =
+        'The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.';
+      break;
+    case 403:
+      errorTitle.value = 'Forbidden';
+      errorDescription.value = "You don't have permission to access this resource.";
+      break;
+    case 401:
+      errorTitle.value = 'Unauthorized';
+      errorDescription.value = "You don't have permission to access this resource.";
+      break;
+    default:
+      errorTitle.value = 'Unknown error';
+      errorDescription.value = 'An unknown error occurred. Please try again later.';
+      break;
+  }
 </script>
