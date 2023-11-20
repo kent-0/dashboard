@@ -30,6 +30,12 @@ module.exports = defineConfig({
         sourceType: 'script',
       },
     },
+    {
+      files: ['pages/**/*.vue'],
+      rules: {
+        'vue/multi-word-component-names': 'off',
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
