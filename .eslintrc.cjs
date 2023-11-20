@@ -31,7 +31,7 @@ module.exports = defineConfig({
       },
     },
     {
-      files: ['pages/**/*.vue'],
+      files: ['pages/**/*.vue', 'app.vue', 'error.vue', 'layouts/**/*.vue'],
       rules: {
         'vue/multi-word-component-names': 'off',
       },
@@ -84,6 +84,7 @@ module.exports = defineConfig({
         type: 'natural',
       },
     ],
+    'perfectionist/sort-vue-attributes': 'off',
     'prettier/prettier': 'error',
     'sort-imports': 'off',
     'sort-keys': 'off',

@@ -5,5 +5,5 @@ html[class*='light'] {
 
 html[class*='dark'] {
   color-scheme: dark;
-  --at-apply: bg-components-dark-background text-white;
+  --at-apply: bg-components-backgroundDark text-white;
 }
