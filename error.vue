@@ -2,23 +2,35 @@
   <div
     class="min-h-screen flex flex-col items-center justify-center p-5 text-center bg-hero-hideout-components-card space-y-5 dark:bg-hero-hideout-components-cardDark"
   >
-    <h1
-      class="text-9xl font-bold font-title text-brand animate__animated animate__fadeInDown dark:text-brand-dark"
-    >
+    <h1 class="animate-fade-in-down text-9xl font-bold font-title text-brand dark:text-brand-dark">
       {{ error.statusCode }}
     </h1>
-    <h2 class="text-5xl font-semibold font-title animate__animated animate__fadeInUp">
+    <h2 class="animate-fade-in-up text-5xl font-semibold font-title">
       {{ errorTitle }}
     </h2>
-    <h4 class="max-w-2xl text-lg animate__animated animate__fadeInUp">
+    <h4 class="max-w-2xl animate-fade-in-up text-lg">
       {{ errorDescription }}
     </h4>
+    <div class="flex animate-fade-in-up gap-5">
+      <ui-button
+        icon-left="lucide:arrow-left"
+        variant="ghost"
+        aria-label="Go to previous page"
+        @click="router.back()"
+      >
+        Go back
+      </ui-button>
+      <ui-button-link to="/" icon-left="lucide:home" variant="solid" aria-label="Go to home page">
+        Home
+      </ui-button-link>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
   import type { NuxtError } from '#app';
 
+  const router = useRouter();
   const props = defineProps<{
     error: NuxtError;
   }>();

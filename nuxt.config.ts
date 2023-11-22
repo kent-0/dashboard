@@ -7,5 +7,11 @@ export default defineNuxtConfig({
   },
   css: ['@unocss/reset/tailwind-compat.css', '~/assets/css/main.css'],
   devtools: { enabled: true },
-  modules: ['@nuxtjs/eslint-module', '@nuxt/image', '@nuxtjs/color-mode', '@unocss/nuxt'],
+  modules: [
+    '@nuxtjs/eslint-module',
+    '@nuxt/image',
+    '@nuxtjs/color-mode',
+    '@unocss/nuxt',
+    'nuxt-icon',
+  ],
 });

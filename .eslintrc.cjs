@@ -31,7 +31,13 @@ module.exports = defineConfig({
       },
     },
     {
-      files: ['pages/**/*.vue', 'app.vue', 'error.vue', 'layouts/**/*.vue'],
+      files: [
+        'pages/**/*.vue',
+        'app.vue',
+        'error.vue',
+        'layouts/**/*.vue',
+        'components/ui/**/*.vue',
+      ],
       rules: {
         'vue/multi-word-component-names': 'off',
       },

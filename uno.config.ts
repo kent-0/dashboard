@@ -23,12 +23,13 @@ export default defineConfig({
     colors: {
       brand: {
         ...theme.colors.emerald,
-        DEFAULT: theme.colors.emerald['500'],
-        dark: theme.colors.emerald['600'],
-        darkSecondary: theme.colors.emerald['500'],
-        darkTertiary: theme.colors.emerald['400'],
-        secondary: theme.colors.emerald['400'],
+        DEFAULT: theme.colors.emerald['400'],
+        accent: theme.colors.emerald['900'],
+        dark: theme.colors.emerald['500'],
+        secondary: theme.colors.emerald['500'],
+        secondaryDark: theme.colors.emerald['400'],
         tertiary: theme.colors.emerald['300'],
+        tertiaryDark: theme.colors.emerald['200'],
       },
       components: {
         background: theme.colors.light,
