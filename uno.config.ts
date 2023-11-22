@@ -25,6 +25,7 @@ export default defineConfig({
         ...theme.colors.emerald,
         DEFAULT: theme.colors.emerald['400'],
         accent: theme.colors.emerald['900'],
+        accentDark: theme.colors.emerald['950'],
         dark: theme.colors.emerald['500'],
         secondary: theme.colors.emerald['500'],
         secondaryDark: theme.colors.emerald['400'],

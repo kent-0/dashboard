@@ -14,15 +14,20 @@
     <div class="flex animate-fade-in-up gap-5">
       <ui-button
         icon-left="lucide:arrow-left"
-        variant="ghost"
+        :variant="error.statusCode === 500 || error.statusCode === 503 ? 'ghost' : 'soft'"
         aria-label="Go to previous page"
         @click="router.back()"
       >
         Go back
       </ui-button>
-      <ui-button-link to="/" icon-left="lucide:home" variant="solid" aria-label="Go to home page">
-        Home
-      </ui-button-link>
+      <ui-button
+        v-if="error.statusCode === 500 || error.statusCode === 503"
+        icon-left="lucide:refresh-cw"
+        variant="solid"
+        aria-label="Go to home page"
+      >
+        Retry
+      </ui-button>
     </div>
   </div>
 </template>

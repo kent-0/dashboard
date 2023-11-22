@@ -1,16 +1,16 @@
 <template>
   <button
     :class="[
-      'flex items-center rounded-md px-4 py-2 transition-all duration-300 space-x-1',
+      'flex items-center justify-center rounded-lg px-5 py-2 transition-all duration-300 space-x-2 text-center',
       'disabled:(opacity-50 cursor-not-allowed pointer-events-none)',
       {
-        'bg-transparent text-brand-accent active:(bg-brand-200 dark:bg-brand-dark/60) hover:(bg-brand-100 dark:bg-brand-dark/50) dark:text-brand-dark':
+        'bg-transparent text-brand dark:text-brand-dark hover:(bg-brand/30 dark:bg-brand-dark/30) active:(bg-brand/20 dark:bg-brand-dark/20)':
           variant === 'ghost',
-        'bg-transparent border border-brand text-brand transition-all duration-300 space-x-1 dark:(border-brand-dark active:bg-brand-dark/70 hover:bg-brand-dark/50) active:(bg-brand-100) hover:(bg-brand-50)':
+        'bg-transparent text-brand border border-brand dark:(border-brand-dark text-brand-dark) hover:(border-brand-secondary dark:border-brand-secondaryDark bg-brand/30 dark:bg-brand-dark/30) active:(border-brand-tertiary dark:border-brand-tertiaryDark bg-brand/10 dark:bg-brand-dark/10)':
           variant === 'outline',
-        'bg-brand-100 text-brand-accent active:(bg-brand-300 dark:bg-brand-dark/70) dark:(bg-brand-dark/50 text-brand) hover:(bg-brand-200 dark:bg-brand-dark/60)':
+        'bg-brand/20 hover:(bg-brand/30 dark:bg-brand-dark/30) text-brand dark:(bg-brand-dark/20 text-brand-dark) active:(bg-brand/10 dark:bg-brand-dark/10)':
           variant === 'soft',
-        'active:dark:bg-brand-tertiaryDark hover:dark:bg-brand-secondaryDark dark:text-brand-accent bg-brand text-white active:bg-brand-tertiary dark:bg-brand-dark hover:(bg-brand-secondary)':
+        'bg-brand dark:(bg-brand-dark text-brand-accentDark) text-brand-accent hover:(bg-brand-secondary dark:bg-brand-secondaryDark) active:(bg-brand-tertiary dark:bg-brand-tertiaryDark)':
           variant === 'solid',
       },
     ]"
