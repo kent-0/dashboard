@@ -25,6 +25,7 @@
         icon-left="lucide:refresh-cw"
         variant="solid"
         aria-label="Go to home page"
+        @click="retry()"
       >
         Retry
       </ui-button>
@@ -39,9 +40,22 @@
   const props = defineProps<{
     error: NuxtError;
   }>();
+  const retry = () => {
+    clearError();
+  };
 
   const errorTitle = ref('Unknown error');
   const errorDescription = ref('An unknown error occurred. Please try again later.');
+
+  useHead({
+    meta: [
+      {
+        content: errorDescription.value,
+        name: 'description',
+      },
+    ],
+    title: errorTitle.value,
+  });
 
   switch (props.error.statusCode) {
     case 404:
