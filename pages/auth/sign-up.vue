@@ -11,10 +11,38 @@
           Please complete the required fields to register your user account and manage your projects
           like never before.
         </p>
-        <UiFormInput label="Username" type="text" icon-left="lucide:user" />
-        <UiFormInput label="Email" icon-left="lucide:mail" type="email" />
-        <UiFormInput label="Password" icon-left="lucide:key" type="password" />
-        <UiFormInput label="Confirm password" icon-left="lucide:key" type="password" />
+        <UiFormInput
+          label="Username"
+          type="text"
+          icon-left="lucide:user"
+          v-bind="username"
+          :has-error="errors.username"
+          :hint="errors.username"
+        />
+        <UiFormInput
+          label="Email"
+          icon-left="lucide:mail"
+          type="email"
+          v-bind="email"
+          :has-error="errors.email"
+          :hint="errors.email"
+        />
+        <UiFormInput
+          label="Password"
+          icon-left="lucide:key"
+          type="password"
+          v-bind="password"
+          :has-error="errors.password"
+          :hint="errors.password"
+        />
+        <UiFormInput
+          label="Confirm password"
+          icon-left="lucide:key"
+          type="password"
+          v-bind="passwordConfirm"
+          :has-error="errors.confirmPassword as boolean"
+          :hint="errors.confirmPassword as string"
+        />
         <ui-button aria-label="Create a new user account" variant="solid">
           Join to the platform
         </ui-button>
@@ -28,6 +56,9 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { toTypedSchema } from '@vee-validate/yup';
+  import * as yup from 'yup';
+
   useHead({
     meta: [
       {
@@ -37,4 +68,36 @@
     ],
     title: 'Sign Up',
   });
+
+  const schema = toTypedSchema(
+    yup.object({
+      confirmPassword: yup
+        .string()
+        .required('The password confirmation is required.')
+        .oneOf([yup.ref('password')], 'Passwords must match.'),
+      email: yup
+        .string()
+        .required('The email is required.')
+        .email('Please enter a valid email address.'),
+      password: yup
+        .string()
+        .required('The password is required.')
+        .min(8, 'The password must be at least 8 characters.')
+        .max(20, 'The password must lower than 20 characters.'),
+      username: yup
+        .string()
+        .required('The username is required.')
+        .min(3, 'The username must be at least 3 characters.')
+        .max(20, 'The username must lower than 20 characters.'),
+    })
+  );
+
+  const { defineInputBinds, errors } = useForm({
+    validationSchema: schema,
+  });
+
+  const username = defineInputBinds('username');
+  const email = defineInputBinds('email');
+  const password = defineInputBinds('password');
+  const passwordConfirm = defineInputBinds('confirmPassword');
 </script>

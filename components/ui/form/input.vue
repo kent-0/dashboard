@@ -50,10 +50,10 @@
       </span>
     </span>
     <small
-      class="absolute left-1 transition-all duration-300 space-x-1"
+      class="absolute left-1 flex items-center transition-all duration-300 -bottom-5 space-x-1"
       :class="{
-        'opacity-100 -bottom-5': hint,
-        'opacity-0 bottom-1': !hint,
+        'opacity-100': hint,
+        'opacity-0': !hint,
         'text-error dark:text-error-dark': hasError,
         'text-warning dark:text-warning-dark': hasWarning,
         'text-black dark:text-white': !hasError && !hasWarning,

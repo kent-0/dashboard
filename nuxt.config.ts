@@ -18,5 +18,9 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@unocss/nuxt',
     'nuxt-icon',
+    '@vee-validate/nuxt',
   ],
+  veeValidate: {
+    autoImports: true,
+  },
 });
