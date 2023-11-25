@@ -19,12 +19,12 @@
     :disabled="isDisabled || isLoading"
     :aria-label="ariaLabel"
   >
-    <icon v-if="iconLeft && !isLoading" :name="iconLeft"></icon>
-    <icon v-if="isLoading" name="lucide:loader" class="animate-spin"></icon>
+    <icon v-if="iconLeft && !isLoading" :name="iconLeft" />
+    <icon v-if="isLoading" name="lucide:loader" class="animate-spin" />
     <span class="font-semibold">
       <slot />
     </span>
-    <icon v-if="iconRight" :name="iconRight"></icon>
+    <icon v-if="iconRight" :name="iconRight" />
   </nuxt-link>
 </template>
 
