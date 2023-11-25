@@ -1,5 +1,6 @@
 <template>
   <nuxt-link
+    v-bind="props"
     :class="[
       'flex items-center justify-center rounded-lg px-5 py-2 transition-all duration-300 space-x-2 text-center',
       'disabled:(opacity-50 cursor-not-allowed pointer-events-none)',
@@ -17,7 +18,6 @@
     ]"
     :disabled="isDisabled || isLoading"
     :aria-label="ariaLabel"
-    type="button"
   >
     <icon v-if="iconLeft && !isLoading" :name="iconLeft"></icon>
     <icon v-if="isLoading" name="lucide:loader" class="animate-spin"></icon>
@@ -31,7 +31,7 @@
 <script setup lang="ts">
   import type { NuxtLinkProps } from '#app/components/nuxt-link';
 
-  defineProps<
+  const props = defineProps<
     {
       ariaLabel: string;
       iconLeft?: `lucide:${string}`;

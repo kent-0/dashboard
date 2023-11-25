@@ -39,7 +39,7 @@ export default defineConfig({
         cardDark: theme.colors.dark['800'],
         element: theme.colors.light['400'],
         elementDark: theme.colors.dark['700'],
-        extra: theme.colors.light['400'],
+        extra: theme.colors.light['600'],
         extraDark: theme.colors.dark['600'],
       },
     },
