@@ -27,4 +27,14 @@
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  useHead({
+    meta: [
+      {
+        content: 'Register your user account and manage your projects like never before.',
+        name: 'description',
+      },
+    ],
+    title: 'Sign Up',
+  });
+</script>

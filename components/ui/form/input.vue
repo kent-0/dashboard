@@ -1,11 +1,13 @@
 <template>
-  <label class="group flex flex-col space-y-1">
+  <label class="relative flex flex-col space-y-1">
     <span>{{ label }}</span>
     <span class="flex space-x-0.2">
       <span
         v-if="iconLeft"
         :class="{
-          'text-brand dark:text-brand-dark opacity-100': isFocused,
+          'text-brand dark:text-brand-dark opacity-100': isFocused && !hasError && !hasWarning,
+          'text-error dark:text-error-dark opacity-100': hasError,
+          'text-warning dark:text-warning-dark opacity-100': hasWarning,
         }"
         class="rounded-l-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
       >
@@ -18,8 +20,11 @@
           'rounded-lg': !iconLeft && !iconRight,
           'rounded-none': iconLeft && iconRight,
           'rounded-r-none': type === 'password',
+          'focus:ring-brand dark:focus:ring-brand-dark': !hasError && !hasWarning,
+          'focus:ring-error dark:focus:ring-error-dark': hasError,
+          'focus:ring-warning dark:focus:ring-warning-dark': hasWarning,
         }"
-        class="w-full border-none bg-components-element py-3 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark focus:ring-brand dark:focus:ring-brand-dark"
+        class="w-full border-none bg-components-element py-3 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark"
         :type="isShowPassword ? 'text' : type || 'text'"
         v-bind="$attrs"
         :disabled="disabled"
@@ -44,6 +49,21 @@
         <icon :name="isShowPassword ? 'lucide:eye-off' : 'lucide:eye'" />
       </span>
     </span>
+    <small
+      class="absolute left-1 transition-all duration-300 space-x-1"
+      :class="{
+        'opacity-100 -bottom-5': hint,
+        'opacity-0 bottom-1': !hint,
+        'text-error dark:text-error-dark': hasError,
+        'text-warning dark:text-warning-dark': hasWarning,
+        'text-black dark:text-white': !hasError && !hasWarning,
+        'opacity-70': hint && !hasError && !hasWarning,
+      }"
+    >
+      <icon v-if="hasError" name="lucide:alert-circle" />
+      <icon v-if="hasWarning" name="lucide:alert-triangle" />
+      <span class="line-clamp-1">{{ hint }}</span>
+    </small>
   </label>
 </template>
 <script setup lang="ts">
@@ -53,6 +73,9 @@
 
   defineProps<{
     disabled?: boolean;
+    hasError?: boolean;
+    hasWarning?: boolean;
+    hint?: string;
     iconLeft?: `lucide:${string}`;
     iconRight?: `lucide:${string}`;
     label: string;
