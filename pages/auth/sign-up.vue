@@ -16,7 +16,7 @@
           type="text"
           icon-left="lucide:user"
           v-bind="username"
-          :has-error="errors.username"
+          :has-error="!!errors.username"
           :hint="errors.username"
         />
         <UiFormInput
@@ -24,7 +24,7 @@
           icon-left="lucide:mail"
           type="email"
           v-bind="email"
-          :has-error="errors.email"
+          :has-error="!!errors.email"
           :hint="errors.email"
         />
         <UiFormInput
@@ -32,7 +32,7 @@
           icon-left="lucide:key"
           type="password"
           v-bind="password"
-          :has-error="errors.password"
+          :has-error="!!errors.password"
           :hint="errors.password"
         />
         <UiFormInput
@@ -40,7 +40,7 @@
           icon-left="lucide:key"
           type="password"
           v-bind="passwordConfirm"
-          :has-error="errors.confirmPassword as boolean"
+          :has-error="!!errors.confirmPassword"
           :hint="errors.confirmPassword as string"
         />
         <ui-button aria-label="Create a new user account" variant="solid">
