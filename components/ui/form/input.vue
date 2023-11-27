@@ -5,6 +5,9 @@
       :class="{
         'text-xs top-3 opacity-70': isFocused || $attrs.value,
         'top-5': !isFocused && !$attrs.value,
+        'text-brand dark:text-brand-dark opacity-100': isFocused && !hasError && !hasWarning,
+        'text-error dark:text-error-dark opacity-100': hasError,
+        'text-warning dark:text-warning-dark opacity-100': hasWarning,
       }"
     >
       {{ label }}
@@ -32,11 +35,12 @@
           'focus:ring-error dark:focus:ring-error-dark': hasError,
           'focus:ring-warning dark:focus:ring-warning-dark': hasWarning,
         }"
-        class="w-full border-none bg-components-element pb-2 pt-6 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark"
+        class="w-full border-none bg-components-element pb-2 pt-6 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark placeholder:opacity-0 focus:placeholder:opacity-100"
         :type="isShowPassword ? 'text' : type || 'text'"
         v-bind="$attrs"
         :disabled="disabled"
         :label="label"
+        :placeholder="placeholder"
         @focus="isFocused = true"
         @blur="isFocused = false"
       />

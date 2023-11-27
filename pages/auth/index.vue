@@ -18,6 +18,7 @@
           v-bind="username"
           :has-error="!!errors.username"
           :hint="errors.username"
+          placeholder="mycoolusernamehere"
         />
         <UiFormInput
           label="Password"
@@ -26,6 +27,7 @@
           v-bind="password"
           :has-error="!!errors.password"
           :hint="errors.password"
+          placeholder="My super secret password"
         />
         <ui-button
           aria-label="Sign in with current existing user"

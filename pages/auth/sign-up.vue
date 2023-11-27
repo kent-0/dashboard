@@ -18,6 +18,7 @@
           v-bind="username"
           :has-error="!!errors.username"
           :hint="errors.username"
+          placeholder="mycoolusernamehere"
         />
         <UiFormInput
           label="Email"
@@ -26,6 +27,7 @@
           v-bind="email"
           :has-error="!!errors.email"
           :hint="errors.email"
+          placeholder="example@kento.app"
         />
         <UiFormInput
           label="Password"
@@ -34,6 +36,7 @@
           v-bind="password"
           :has-error="!!errors.password"
           :hint="errors.password"
+          placeholder="My super secret password"
         />
         <UiFormInput
           label="Confirm password"
@@ -42,6 +45,7 @@
           v-bind="passwordConfirm"
           :has-error="!!errors.confirmPassword"
           :hint="errors.confirmPassword as string"
+          placeholder="My super secret password confirmation"
         />
         <ui-button aria-label="Create a new user account" variant="solid">
           Join to the platform
