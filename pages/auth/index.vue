@@ -11,6 +11,12 @@
           Please sign in to your account to continue using our services. If you don't have an
           account yet, you can create one by clicking the button below.
         </p>
+        <ui-overlay-notification-individual
+          v-if="route.query?.error === 'CredentialsSignin'"
+          title="Crendetials wrong"
+          message="The username or password you entered is incorrect. Please check your credentials and try again."
+          type="warning"
+        />
         <UiFormInput
           label="Username"
           type="text"
@@ -80,6 +86,7 @@
   });
 
   const notifications = useNotification();
+  const route = useRoute();
 
   const schema = toTypedSchema(
     yup.object({
