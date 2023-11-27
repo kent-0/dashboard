@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex">
     <div
-      class="min-h-screen w-1/2 bg-[url(/auth/banner-sign-up.png)] bg-cover bg-center bg-no-repeat"
+      class="min-h-screen w-1/2 bg-[url(/auth/banner-sign-in.png)] bg-cover bg-center bg-no-repeat"
     ></div>
     <div class="w-1/2 flex flex-col items-center justify-center py-5">
       <form class="max-w-110 flex flex-col space-y-5" @submit.prevent="submit">
