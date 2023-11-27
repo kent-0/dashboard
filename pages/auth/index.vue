@@ -86,14 +86,16 @@
       password: yup
         .string()
         .required('The password is required.')
-        .min(8, 'The password must be at least 8 characters.')
-        .max(100, 'The password must lower than 100 characters.'),
+        .min(8)
+        .max(100)
+        .label('Password'),
       username: yup
         .string()
-        .required('The username is required.')
-        .min(3, 'The username must be at least 3 characters.')
-        .max(20, 'The username must lower than 20 characters.')
-        .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.'),
+        .required()
+        .min(3)
+        .max(20)
+        .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.')
+        .label('Username'),
     })
   );
 

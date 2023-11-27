@@ -80,22 +80,17 @@
     yup.object({
       confirmPassword: yup
         .string()
-        .required('The password confirmation is required.')
-        .oneOf([yup.ref('password')], 'Passwords must match.'),
-      email: yup
-        .string()
-        .required('The email is required.')
-        .email('Please enter a valid email address.'),
-      password: yup
-        .string()
-        .required('The password is required.')
-        .min(8, 'The password must be at least 8 characters.')
-        .max(100, 'The password must lower than 100 characters.'),
+        .required()
+        .label('Password confirmation')
+        .oneOf([yup.ref('password')], 'The password confirmation does not match.'),
+      email: yup.string().required().label('Email').email(),
+      password: yup.string().required().label('Password').min(8).max(100),
       username: yup
         .string()
-        .required('The username is required.')
-        .min(3, 'The username must be at least 3 characters.')
-        .max(20, 'The username must lower than 20 characters.')
+        .required()
+        .min(3)
+        .max(20)
+        .label('Username')
         .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.'),
     })
   );

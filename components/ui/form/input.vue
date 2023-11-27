@@ -45,7 +45,11 @@
         :name="name"
         :readonly="readonly"
         @focus="isFocused = true"
-        @blur="isFocused = false"
+        @blur="
+          isFocused = false;
+          handleBlur($event, true);
+        "
+        @change="handleChange($event, !!errorMessage)"
       />
       <span
         v-if="iconRight && type !== 'password'"
@@ -124,5 +128,7 @@
   const isFocused = ref(false);
   const isShowPassword = ref(false);
 
-  const { errors, value } = useField(() => props.name);
+  const { errorMessage, errors, handleBlur, handleChange, value } = useField(() => props.name, {
+    syncVModel: true,
+  });
 </script>
