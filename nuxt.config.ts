@@ -5,6 +5,20 @@ export default defineNuxtConfig({
       titleTemplate: '%s - Kento',
     },
   },
+  auth: {
+    /* globalAppMiddleware: {
+      allow404WithoutAuth: true,
+      isEnabled: true,
+    }, */
+    provider: {
+      defaultProvider: 'kento-auth',
+      type: 'authjs',
+    },
+    session: {
+      enableRefreshOnWindowFocus: true,
+      enableRefreshPeriodically: true,
+    },
+  },
   colorMode: {
     classSuffix: '',
     fallback: 'light',
@@ -19,7 +33,13 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     'nuxt-icon',
     '@vee-validate/nuxt',
+    '@sidebase/nuxt-auth',
   ],
+  runtimeConfig: {
+    auth: {
+      secret: '',
+    },
+  },
   veeValidate: {
     autoImports: true,
   },

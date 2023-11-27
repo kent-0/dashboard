@@ -4,7 +4,7 @@
       class="min-h-screen w-1/2 bg-[url(/auth/banner-sign-up.png)] bg-cover bg-center bg-no-repeat"
     ></div>
     <div class="w-1/2 flex flex-col items-center justify-center py-5">
-      <form class="max-w-110 flex flex-col space-y-5">
+      <form class="max-w-110 flex flex-col space-y-5" @submit.prevent="submit">
         <UiLayoutDivider direction="right">Kento</UiLayoutDivider>
         <h1 class="text-5xl font-title">Welcome back!</h1>
         <p>
@@ -27,7 +27,12 @@
           :has-error="!!errors.password"
           :hint="errors.password"
         />
-        <ui-button aria-label="Sign in with current existing user" variant="solid">
+        <ui-button
+          aria-label="Sign in with current existing user"
+          variant="solid"
+          :is-disabled="meta.pending || !meta.valid"
+          type="submit"
+        >
           Sign In
         </ui-button>
         <ui-button-link aria-label="Create a new user account" variant="soft" to="/auth/sign-up">
@@ -84,10 +89,16 @@
     })
   );
 
-  const { defineInputBinds, errors } = useForm({
+  const { defineInputBinds, errors, meta, values } = useForm({
     validationSchema: schema,
   });
 
   const username = defineInputBinds('username');
   const password = defineInputBinds('password');
+
+  const { signIn } = useAuth();
+
+  const submit = async () => {
+    await signIn('auth-internal', values);
+  };
 </script>

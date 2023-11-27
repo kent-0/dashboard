@@ -1,6 +1,14 @@
 <template>
-  <label class="relative flex flex-col space-y-1">
-    <span>{{ label }}</span>
+  <label class="relative flex flex-col pb-2 space-y-1">
+    <span
+      class="absolute left-15 transition-all duration-300"
+      :class="{
+        'text-xs top-2 opacity-70': isFocused || $attrs.value,
+        'top-5': !isFocused && !$attrs.value,
+      }"
+    >
+      {{ label }}
+    </span>
     <span class="flex space-x-0.2">
       <span
         v-if="iconLeft"
@@ -9,7 +17,7 @@
           'text-error dark:text-error-dark opacity-100': hasError,
           'text-warning dark:text-warning-dark opacity-100': hasWarning,
         }"
-        class="rounded-l-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
+        class="flex items-center justify-center rounded-l-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
       >
         <icon :name="iconLeft" />
       </span>
@@ -24,7 +32,7 @@
           'focus:ring-error dark:focus:ring-error-dark': hasError,
           'focus:ring-warning dark:focus:ring-warning-dark': hasWarning,
         }"
-        class="w-full border-none bg-components-element py-3 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark"
+        class="w-full border-none bg-components-element pb-3 pt-5 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark"
         :type="isShowPassword ? 'text' : type || 'text'"
         v-bind="$attrs"
         :disabled="disabled"
@@ -50,7 +58,7 @@
       </span>
     </span>
     <small
-      class="absolute left-1 flex items-center transition-all duration-300 -bottom-5 space-x-1"
+      class="absolute left-1 flex items-center transition-all duration-300 -bottom-4 space-x-1"
       :class="{
         'opacity-100': hint,
         'opacity-0': !hint,
