@@ -30,14 +30,19 @@
           placeholder="My super secret password"
         />
         <ui-button
+          :is-disabled="meta.pending || !meta.valid"
           aria-label="Sign in with current existing user"
           variant="solid"
-          :is-disabled="meta.pending || !meta.valid"
           type="submit"
         >
           Sign In
         </ui-button>
-        <ui-button-link aria-label="Create a new user account" variant="soft" to="/auth/sign-up">
+        <ui-button-link
+          :is-disabled="meta.pending"
+          aria-label="Create a new user account"
+          variant="soft"
+          to="/auth/sign-up"
+        >
           Sign Up
         </ui-button-link>
         <UiLayoutDivider>Or login using social networks</UiLayoutDivider>
@@ -46,6 +51,7 @@
             variant="ghost"
             icon-left="lucide:github"
             aria-label="Login with Github account"
+            :is-disabled="meta.pending"
           >
             Github
           </ui-button>
@@ -53,6 +59,7 @@
             variant="ghost"
             icon-left="lucide:twitter"
             aria-label="Login with Twitter account"
+            :is-disabled="meta.pending"
           >
             Twitter
           </ui-button>
@@ -75,6 +82,8 @@
     ],
     title: 'Sign In',
   });
+
+  const notifications = useNotification();
 
   const schema = toTypedSchema(
     yup.object({
@@ -102,6 +111,22 @@
   const { signIn } = useAuth();
 
   const submit = async () => {
+    if (!meta.value.valid) {
+      return notifications.addNotification({
+        message: 'Please check the form and try again.',
+        title: 'Missing required fields',
+        type: 'error',
+      });
+    }
+
+    if (meta.value.pending) {
+      return notifications.addNotification({
+        message: 'Please wait for the current request to finish.',
+        title: 'Request in progress',
+        type: 'warning',
+      });
+    }
+
     await signIn('auth-internal', values);
   };
 </script>
