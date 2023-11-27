@@ -43,14 +43,12 @@
     "eslint-plugin-vue": "^9.18.1",
     "husky": "^8.0.0",
     "lint-staged": "^15.1.0",
+    "next-auth": "^4.24.5",
     "nuxt": "^3.8.2",
     "nuxt-icon": "^0.6.6",
     "prettier": "^3.1.0",
     "unocss-preset-animatecss": "^0.0.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "next-auth": "4.21.1"
   }
 }
