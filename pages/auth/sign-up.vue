@@ -4,7 +4,7 @@
       class="min-h-screen w-1/2 bg-[url(/auth/banner-sign-up.png)] bg-cover bg-center bg-no-repeat"
     ></div>
     <div class="w-1/2 flex flex-col items-center justify-center py-5">
-      <form class="max-w-110 flex flex-col space-y-5">
+      <form class="max-w-110 flex flex-col space-y-5" @submit.prevent="submit">
         <UiLayoutDivider direction="right">Kento</UiLayoutDivider>
         <h1 class="text-5xl font-title">We're glad to have you here.</h1>
         <p>
@@ -15,43 +15,44 @@
           label="Username"
           type="text"
           icon-left="lucide:user"
-          v-bind="username"
-          :has-error="!!errors.username"
-          :hint="errors.username"
           placeholder="mycoolusernamehere"
+          name="username"
         />
         <UiFormInput
           label="Email"
           icon-left="lucide:mail"
           type="email"
-          v-bind="email"
-          :has-error="!!errors.email"
-          :hint="errors.email"
           placeholder="example@kento.app"
+          name="email"
         />
         <UiFormInput
           label="Password"
           icon-left="lucide:key"
           type="password"
-          v-bind="password"
-          :has-error="!!errors.password"
-          :hint="errors.password"
           placeholder="My super secret password"
+          name="password"
         />
         <UiFormInput
           label="Confirm password"
           icon-left="lucide:key"
           type="password"
-          v-bind="passwordConfirm"
-          :has-error="!!errors.confirmPassword"
-          :hint="errors.confirmPassword as string"
           placeholder="My super secret password confirmation"
+          name="confirmPassword"
         />
-        <ui-button aria-label="Create a new user account" variant="solid">
+        <ui-button
+          :is-disabled="meta.pending || !meta.valid"
+          aria-label="Create a new user account"
+          variant="solid"
+        >
           Join to the platform
         </ui-button>
         <UiLayoutDivider>Already have an account?</UiLayoutDivider>
-        <ui-button-link aria-label="Go to sign in page" to="/auth" variant="soft">
+        <ui-button-link
+          :is-disabled="meta.pending"
+          aria-label="Go to sign in page"
+          to="/auth"
+          variant="soft"
+        >
           Sign In
         </ui-button-link>
         <UiLayoutDivider direction="left">Authentication</UiLayoutDivider>
@@ -72,6 +73,8 @@
     ],
     title: 'Sign Up',
   });
+
+  const notifications = useNotification();
 
   const schema = toTypedSchema(
     yup.object({
@@ -97,12 +100,25 @@
     })
   );
 
-  const { defineInputBinds, errors } = useForm({
+  const { meta } = useForm({
     validationSchema: schema,
   });
 
-  const username = defineInputBinds('username');
-  const email = defineInputBinds('email');
-  const password = defineInputBinds('password');
-  const passwordConfirm = defineInputBinds('confirmPassword');
+  const submit = () => {
+    if (!meta.value.valid) {
+      return notifications.addNotification({
+        message: 'Please check the form and try again.',
+        title: 'Missing required fields',
+        type: 'error',
+      });
+    }
+
+    if (meta.value.pending) {
+      return notifications.addNotification({
+        message: 'Please wait for the current request to finish.',
+        title: 'Request in progress',
+        type: 'warning',
+      });
+    }
+  };
 </script>

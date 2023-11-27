@@ -15,19 +15,15 @@
           label="Username"
           type="text"
           icon-left="lucide:user"
-          v-bind="username"
-          :has-error="!!errors.username"
-          :hint="errors.username"
           placeholder="mycoolusernamehere"
+          name="username"
         />
         <UiFormInput
           label="Password"
           icon-left="lucide:key"
           type="password"
-          v-bind="password"
-          :has-error="!!errors.password"
-          :hint="errors.password"
           placeholder="My super secret password"
+          name="password"
         />
         <ui-button
           :is-disabled="meta.pending || !meta.valid"
@@ -101,13 +97,9 @@
     })
   );
 
-  const { defineInputBinds, errors, meta, values } = useForm({
+  const { meta, values } = useForm({
     validationSchema: schema,
   });
-
-  const username = defineInputBinds('username');
-  const password = defineInputBinds('password');
-
   const { signIn } = useAuth();
 
   const submit = async () => {
