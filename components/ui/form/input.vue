@@ -3,7 +3,7 @@
     <span
       class="absolute left-15 transition-all duration-300"
       :class="{
-        'text-xs top-2 opacity-70': isFocused || $attrs.value,
+        'text-xs top-3 opacity-70': isFocused || $attrs.value,
         'top-5': !isFocused && !$attrs.value,
       }"
     >
@@ -32,7 +32,7 @@
           'focus:ring-error dark:focus:ring-error-dark': hasError,
           'focus:ring-warning dark:focus:ring-warning-dark': hasWarning,
         }"
-        class="w-full border-none bg-components-element pb-3 pt-5 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark"
+        class="w-full border-none bg-components-element pb-2 pt-6 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark"
         :type="isShowPassword ? 'text' : type || 'text'"
         v-bind="$attrs"
         :disabled="disabled"
@@ -45,13 +45,13 @@
         :class="{
           'text-brand dark:text-brand-dark opacity-100': isFocused,
         }"
-        class="border-l-2 border-l-components-card rounded-r-lg bg-components-element px-4 py-3 transition duration-300 dark:border-l-components-cardDark dark:bg-components-elementDark"
+        class="flex items-center justify-center border-l-2 border-l-components-card rounded-r-lg bg-components-element px-4 py-3 transition duration-300 dark:border-l-components-cardDark dark:bg-components-elementDark"
       >
         <icon :name="iconRight" />
       </span>
       <span
         v-if="type === 'password'"
-        class="cursor-pointer rounded-r-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
+        class="flex cursor-pointer items-center justify-center rounded-r-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
         @click="isShowPassword = !isShowPassword"
       >
         <icon :name="isShowPassword ? 'lucide:eye-off' : 'lucide:eye'" />
