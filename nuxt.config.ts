@@ -26,6 +26,9 @@ export default defineNuxtConfig({
   },
   css: ['@unocss/reset/tailwind-compat.css', '~/assets/css/main.css'],
   devtools: { enabled: true },
+  imports: {
+    dirs: ['composables/**'],
+  },
   modules: [
     '@nuxtjs/eslint-module',
     '@nuxt/image',
