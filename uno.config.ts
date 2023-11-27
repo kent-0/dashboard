@@ -53,6 +53,17 @@ export default defineConfig({
         tertiary: theme.colors.red['300'],
         tertiaryDark: theme.colors.red['200'],
       },
+      success: {
+        ...theme.colors.green,
+        DEFAULT: theme.colors.green['400'],
+        accent: theme.colors.green['900'],
+        accentDark: theme.colors.green['950'],
+        dark: theme.colors.green['500'],
+        secondary: theme.colors.green['500'],
+        secondaryDark: theme.colors.green['400'],
+        tertiary: theme.colors.green['300'],
+        tertiaryDark: theme.colors.green['200'],
+      },
       warning: {
         ...theme.colors.yellow,
         DEFAULT: theme.colors.yellow['400'],
