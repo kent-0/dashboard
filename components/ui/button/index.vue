@@ -15,7 +15,7 @@
       },
     ]"
     :disabled="isDisabled || isLoading"
-    :aria-label="ariaLabel"
+    :aria-label="$props['aria-label']"
     type="button"
   >
     <icon v-if="iconLeft && !isLoading" :name="iconLeft" />
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
   defineProps<{
-    ariaLabel: string;
+    'aria-label': string;
     iconLeft?: `lucide:${string}`;
     iconRight?: `lucide:${string}`;
     isDisabled?: boolean;
