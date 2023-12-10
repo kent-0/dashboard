@@ -1,5 +1,6 @@
 <template>
   <nuxt-link
+    role="button"
     v-bind="props"
     :class="[
       'flex items-center justify-center rounded-lg px-5 py-2 transition-all duration-300 space-x-2 text-center',
