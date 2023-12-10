@@ -18,6 +18,7 @@
           type="warning"
         />
         <UiFormInput
+          autocomplete="username"
           label="Username"
           type="text"
           icon-left="lucide:user"
@@ -25,6 +26,7 @@
           name="username"
         />
         <UiFormInput
+          autocomplete="current-password"
           label="Password"
           icon-left="lucide:key"
           type="password"

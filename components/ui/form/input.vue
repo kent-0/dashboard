@@ -112,6 +112,7 @@
   });
 
   const props = defineProps<{
+    autocomplete?: 'current-password' | 'email' | 'new-password' | 'off' | 'on' | 'username';
     disabled?: boolean;
     hasError?: boolean;
     hasWarning?: boolean;
