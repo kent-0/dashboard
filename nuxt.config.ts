@@ -1,5 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  apollo: {
+    clients: {
+      default: {
+        cookieAttributes: {
+          httpOnly: true,
+        },
+        httpEndpoint: process.env.NUXT_PUBLIC_API_ORIGIN!,
+        httpLinkOptions: {
+          credentials: 'include',
+        },
+      },
+    },
+  },
   app: {
     head: {
       titleTemplate: '%s - Kento',
@@ -37,10 +50,14 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vee-validate/nuxt',
     '@sidebase/nuxt-auth',
+    '@nuxtjs/apollo',
   ],
   runtimeConfig: {
     auth: {
       secret: '',
+    },
+    public: {
+      apiOrigin: '',
     },
   },
   veeValidate: {
