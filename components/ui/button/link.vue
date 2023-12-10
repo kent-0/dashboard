@@ -34,6 +34,7 @@
 
   defineProps<
     {
+      // eslint-disable-next-line vue/prop-name-casing -- Weird error with Volar Typescript
       'aria-label': string;
       iconLeft?: `lucide:${string}`;
       iconRight?: `lucide:${string}`;

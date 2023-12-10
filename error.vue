@@ -2,7 +2,7 @@
   <div
     class="min-h-screen flex flex-col items-center justify-center p-5 text-center bg-hero-hideout-components-card space-y-5 dark:bg-hero-hideout-components-cardDark"
   >
-    <h1 class="animate-fade-in-down text-9xl font-bold font-title text-brand dark:text-brand-dark">
+    <h1 class="animate-fade-in-down text-9xl text-brand font-bold font-title dark:text-brand-dark">
       {{ error.statusCode }}
     </h1>
     <h2 class="animate-fade-in-up text-5xl font-semibold font-title">
