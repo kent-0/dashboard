@@ -16,101 +16,10 @@
         />
       </div>
     </div>
-    <div class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark">
-      <UiLayoutDivider direction="left">
-        <h2 class="text-lg font-semibold">Personal information</h2>
-      </UiLayoutDivider>
-      <p class="opacity-50">
-        Your personal information is used to identify you across the platform. It is visible to
-        other users and can be changed at any time. Remember respect the rules of the platform and
-        do not use offensive words.
-      </p>
-      <form class="grid grid-cols-3 gap-5">
-        <UiFormInput
-          type="text"
-          label="First name"
-          name="fist_name"
-          icon-left="lucide:file-signature"
-          :placeholder="session?.first_name"
-          autocomplete="given-name"
-        />
-        <UiFormInput
-          type="text"
-          label="Last name"
-          name="last_name"
-          icon-left="lucide:file-signature"
-          :placeholder="session?.last_name"
-          autocomplete="family-name"
-        />
-        <UiFormInput
-          type="text"
-          label="Username"
-          name="username"
-          icon-left="lucide:at-sign"
-          :placeholder="session?.username"
-          autocomplete="username"
-        />
-      </form>
-      <UiLayoutDivider />
-      <div class="flex justify-end">
-        <UiButton icon-left="lucide:save-all" variant="solid" aria-label="Save the new user info">
-          Save changes
-        </UiButton>
-      </div>
-    </div>
+    <AuthAccountPersonalInfo />
     <div class="grid grid-cols-2 gap-5">
-      <div
-        class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
-      >
-        <UiLayoutDivider direction="left">
-          <h2 class="text-lg font-semibold">Email</h2>
-        </UiLayoutDivider>
-        <p class="opacity-50">
-          Your email address is used to identify you across the platform. It is visible to other
-          users and can be changed at any time. When you change your email address, you will receive
-          a confirmation email to the new address.
-        </p>
-        <form>
-          <UiFormInput
-            type="email"
-            label="Email address"
-            name="email"
-            icon-left="lucide:mail"
-            :placeholder="session?.email.value"
-          />
-        </form>
-        <UiLayoutDivider />
-        <div class="flex justify-end">
-          <UiButton icon-left="lucide:save-all" variant="solid" aria-label="Save the new user info">
-            Save changes
-          </UiButton>
-        </div>
-      </div>
-      <div class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark">
-        <UiLayoutDivider direction="left">
-          <h2 class="text-lg font-semibold">Confirm email</h2>
-        </UiLayoutDivider>
-        <p class="opacity-50">
-          Seem like you haven't confirmed your email address yet. Please check your inbox and paste
-          the confirmation code below. If you haven't received the email, please check your spam
-          folder.
-        </p>
-        <form>
-          <UiFormInput
-            type="email"
-            label="Activation token"
-            name="email_token"
-            icon-left="lucide:braces"
-            placeholder="123ABC456"
-          />
-        </form>
-        <UiLayoutDivider />
-        <div class="flex justify-end">
-          <UiButton icon-left="lucide:save-all" variant="solid" aria-label="Save the new user info">
-            Save changes
-          </UiButton>
-        </div>
-      </div>
+      <AuthAccountEmailUpdate />
+      <AuthAccountEmailConfirm />
     </div>
   </main>
 </template>
@@ -135,5 +44,3 @@
     layout: 'auth-account',
   });
 </script>
-
-<style scoped></style>

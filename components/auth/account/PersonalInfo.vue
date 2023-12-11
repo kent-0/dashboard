@@ -1,0 +1,82 @@
+<template>
+  <form
+    class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
+    @submit.prevent="form.handleSubmit"
+  >
+    <UiLayoutDivider direction="left">
+      <h2 class="text-lg font-semibold">Personal information</h2>
+    </UiLayoutDivider>
+    <p class="opacity-50">
+      Your personal information is used to identify you across the platform. It is visible to other
+      users and can be changed at any time. Remember respect the rules of the platform and do not
+      use offensive words.
+    </p>
+    <div class="grid grid-cols-3 gap-5">
+      <UiFormInput
+        type="text"
+        label="First name"
+        name="first_name"
+        icon-left="lucide:file-signature"
+        :placeholder="session?.first_name"
+        autocomplete="given-name"
+      />
+      <UiFormInput
+        type="text"
+        label="Last name"
+        name="last_name"
+        icon-left="lucide:file-signature"
+        :placeholder="session?.last_name"
+        autocomplete="family-name"
+      />
+      <UiFormInput
+        type="text"
+        label="Username"
+        name="username"
+        icon-left="lucide:at-sign"
+        :placeholder="session?.username"
+        autocomplete="username"
+      />
+    </div>
+    <UiLayoutDivider />
+    <div class="flex justify-end">
+      <UiButton
+        icon-left="lucide:save-all"
+        variant="solid"
+        aria-label="Save the new user info"
+        type="submit"
+        :is-disabled="form.meta.value.pending || !form.meta.value.valid"
+      >
+        Save changes
+      </UiButton>
+    </div>
+  </form>
+</template>
+
+<script lang="ts" setup>
+  import { toTypedSchema } from '@vee-validate/yup';
+  import * as yup from 'yup';
+
+  const { getSession } = useAuth();
+  const session = await getSession();
+
+  const form = useForm({
+    initialValues: {
+      first_name: session?.first_name,
+      last_name: session?.last_name,
+      username: session?.username,
+    },
+    validationSchema: toTypedSchema(
+      yup.object({
+        first_name: yup.string().required().label('First name').min(3).max(30),
+        last_name: yup.string().required().label('Last name').min(3).max(30),
+        username: yup
+          .string()
+          .required()
+          .min(3)
+          .max(20)
+          .label('Username')
+          .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.'),
+      })
+    ),
+  });
+</script>
