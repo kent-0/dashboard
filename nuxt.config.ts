@@ -19,11 +19,11 @@ export default defineNuxtConfig({
     },
   },
   auth: {
-    /*     globalAppMiddleware: {
+    globalAppMiddleware: {
       addDefaultCallbackUrl: '/auth',
       allow404WithoutAuth: true,
       isEnabled: true,
-    }, */
+    },
     provider: {
       endpoints: {
         getSession: {
