@@ -19,17 +19,63 @@ export default defineNuxtConfig({
     },
   },
   auth: {
-    /* globalAppMiddleware: {
+    /*     globalAppMiddleware: {
+      addDefaultCallbackUrl: '/auth',
       allow404WithoutAuth: true,
       isEnabled: true,
     }, */
     provider: {
-      defaultProvider: 'kento-auth',
-      type: 'authjs',
+      endpoints: {
+        getSession: {
+          method: 'get',
+          path: '/session',
+        },
+        refresh: {
+          method: 'post',
+          path: '/refresh',
+        },
+        signIn: {
+          method: 'post',
+          path: '/sign-in',
+        },
+        signOut: {
+          method: 'post',
+          path: '/sign-out',
+        },
+        signUp: {
+          method: 'post',
+          path: '/sign-up',
+        },
+      },
+      pages: {
+        login: '/auth',
+      },
+      refreshToken: {
+        maxAgeInSeconds: 60 * 60 * 24 * 7,
+        signInResponseRefreshTokenPointer: '/tokens/refreshToken',
+      },
+      sessionDataType: {
+        biography: 'string | null',
+        email: {
+          is_confirmed: 'boolean',
+          value: 'string',
+        },
+        first_name: 'string',
+        id: 'string',
+        last_name: 'string',
+        projects:
+          "{ project: { owner: { biography: 'string | null', first_name: 'string', id: 'string', last_name: 'string', username: 'string', }, }, roles: { name: 'string', permissions_denied: 'array', permissions_granted: 'array', }, user: { biography: 'string | null', first_name: 'string', id: 'string', last_name: 'string', username: 'string' } }[]",
+        username: 'string',
+      },
+      token: {
+        maxAgeInSeconds: 60 * 60 * 24 * 7,
+        signInResponseTokenPointer: '/tokens/accessToken',
+      },
+      type: 'refresh',
     },
     session: {
       enableRefreshOnWindowFocus: true,
-      enableRefreshPeriodically: true,
+      enableRefreshPeriodically: 60_000,
     },
   },
   colorMode: {

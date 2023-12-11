@@ -74,6 +74,13 @@
     title: 'Sign Up',
   });
 
+  definePageMeta({
+    auth: {
+      navigateAuthenticatedTo: '/',
+      unauthenticatedOnly: true,
+    },
+  });
+
   const notifications = useNotification();
 
   const schema = toTypedSchema(

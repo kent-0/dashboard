@@ -87,6 +87,13 @@
     title: 'Sign In',
   });
 
+  definePageMeta({
+    auth: {
+      navigateAuthenticatedTo: '/',
+      unauthenticatedOnly: true,
+    },
+  });
+
   const notifications = useNotification();
   const route = useRoute();
 
@@ -111,6 +118,7 @@
   const { meta, values } = useForm({
     validationSchema: schema,
   });
+
   const { signIn } = useAuth();
 
   const submit = async () => {
@@ -130,6 +138,9 @@
       });
     }
 
-    await signIn('auth-internal', values);
+    await signIn(values, {
+      callbackUrl: (route.query?.callbackUrl as string) ?? '/',
+      redirect: true,
+    });
   };
 </script>

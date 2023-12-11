@@ -11,6 +11,13 @@
       "webRoot": "${workspaceFolder}"
     },
     {
+      "type": "msedge",
+      "request": "launch",
+      "name": "client: edge",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "server: nuxt",
@@ -21,8 +28,12 @@
   ],
   "compounds": [
     {
-      "name": "fullstack: nuxt",
+      "name": "fullstack: nuxt (chrome)",
       "configurations": ["server: nuxt", "client: chrome"]
+    },
+    {
+      "name": "fullstack: nuxt (edge)",
+      "configurations": ["server: nuxt", "client: edge"]
     }
   ]
 }
