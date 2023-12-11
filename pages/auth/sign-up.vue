@@ -12,6 +12,22 @@
           like never before.
         </p>
         <UiFormInput
+          label="First name"
+          type="text"
+          icon-left="lucide:book-a"
+          placeholder="John"
+          name="first_name"
+          autocomplete="given-name"
+        />
+        <UiFormInput
+          label="Username"
+          type="text"
+          icon-left="lucide:book-a"
+          placeholder="Doe"
+          name="last_name"
+          autocomplete="family-name"
+        />
+        <UiFormInput
           label="Username"
           type="text"
           icon-left="lucide:user"
@@ -43,6 +59,7 @@
           :is-disabled="meta.pending || !meta.valid"
           aria-label="Create a new user account"
           variant="solid"
+          type="submit"
         >
           Join to the platform
         </ui-button>
@@ -91,6 +108,18 @@
         .label('Password confirmation')
         .oneOf([yup.ref('password')], 'The password confirmation does not match.'),
       email: yup.string().required().label('Email').email(),
+      first_name: yup
+        .string()
+        .required()
+        .label('First name')
+        .min(3, 'The first name must be longer than 3 characters.')
+        .max(30, 'The first name should be less than 30 characters.'),
+      last_name: yup
+        .string()
+        .required()
+        .label('Last name')
+        .min(3, 'The last name must be longer than 3 characters.')
+        .max(30, 'The last name should be less than 30 characters.'),
       password: yup.string().required().label('Password').min(8).max(100),
       username: yup
         .string()
@@ -102,11 +131,14 @@
     })
   );
 
-  const { meta } = useForm({
+  const { meta, values } = useForm({
     validationSchema: schema,
   });
 
-  const submit = () => {
+  const { signUp } = useAuth();
+  const route = useRoute();
+
+  const submit = async () => {
     if (!meta.value.valid) {
       return notifications.addNotification({
         message: 'Please check the form and try again.',
@@ -122,5 +154,25 @@
         type: 'warning',
       });
     }
+
+    await signUp(
+      {
+        email: values.email,
+        first_name: values.first_name,
+        last_name: values.last_name,
+        password: values.password,
+        username: values.username,
+      },
+      {
+        callbackUrl: (route.query?.callbackUrl as string) ?? '/',
+        redirect: true,
+      }
+    ).catch((err) => {
+      return notifications.addNotification({
+        message: err.data.statusMessage,
+        title: 'An error has occurred',
+        type: 'error',
+      });
+    });
   };
 </script>

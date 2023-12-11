@@ -112,7 +112,15 @@
   });
 
   const props = defineProps<{
-    autocomplete?: 'current-password' | 'email' | 'new-password' | 'off' | 'on' | 'username';
+    autocomplete?:
+      | 'current-password'
+      | 'email'
+      | 'family-name'
+      | 'given-name'
+      | 'new-password'
+      | 'off'
+      | 'on'
+      | 'username';
     disabled?: boolean;
     hasError?: boolean;
     hasWarning?: boolean;
@@ -129,7 +137,11 @@
   const isFocused = ref(false);
   const isShowPassword = ref(false);
 
-  const { errorMessage, errors, handleBlur, handleChange, value } = useField(() => props.name, {
-    syncVModel: true,
-  });
+  const fieldName = computed(() => props.name);
+  const { errorMessage, errors, handleBlur, handleChange, value } = useField(
+    () => fieldName.value,
+    {
+      syncVModel: true,
+    }
+  );
 </script>

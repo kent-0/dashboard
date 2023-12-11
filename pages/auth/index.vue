@@ -141,6 +141,12 @@
     await signIn(values, {
       callbackUrl: (route.query?.callbackUrl as string) ?? '/',
       redirect: true,
+    }).catch((err) => {
+      return notifications.addNotification({
+        message: err.data.statusMessage,
+        title: 'An error has occurred',
+        type: 'error',
+      });
     });
   };
 </script>

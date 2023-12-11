@@ -17,19 +17,32 @@ interface SignUpResponse {
   };
 }
 
-const signOutQuery = `
-  mutation Mutation {
-    logOut
-  }    
+const signUpQuery = `
+  mutation SignUp($input: AuthSignUpInput!) {
+    signUp(input: $input) {
+      biography
+      email {
+        is_confirmed
+        value
+      }
+      first_name
+      id
+      last_name
+      username
+      projects {
+        id
+      }
+    }
+  }
 `;
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const body = await readBody(event);
 
-  const signOutResponse = await $fetch<SignUpResponse>(config.public.apiOrigin, {
+  const signUpResponse = await $fetch<SignUpResponse>(config.public.apiOrigin, {
     body: {
-      query: signOutQuery,
+      query: signUpQuery,
       variables: {
         input: body,
       },
@@ -37,12 +50,12 @@ export default defineEventHandler(async (event) => {
     method: 'POST',
   }).catch(() => null);
 
-  if (!signOutResponse?.data) {
+  if (!signUpResponse?.data) {
     throw createError({
-      statusCode: 403,
-      statusMessage: 'You are not authorized to access this endpoint.',
+      statusCode: 400,
+      statusMessage: 'You are not allowed to sign up with these credentials.',
     });
   }
 
-  return signOutResponse.data.signUp;
+  return signUpResponse.data.signUp;
 });
