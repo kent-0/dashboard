@@ -1,5 +1,5 @@
 <template>
-  <label class="relative flex flex-col pb-2 space-y-1">
+  <label class="relative flex flex-col pb-2 space-y-1" :class="$attrs.class">
     <span
       class="absolute left-15 transition-all duration-300"
       :class="{
@@ -25,7 +25,7 @@
         <icon :name="iconLeft" />
       </span>
       <input
-        v-bind="$attrs"
+        v-bind="{ ...$attrs, class: undefined }"
         v-model="value"
         :class="{
           'rounded-l-lg': !iconLeft,
