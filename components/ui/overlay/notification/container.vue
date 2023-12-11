@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute right-0 top-0 max-h-screen max-w-sm w-full flex flex-col gap-5 overflow-y-hidden p-5"
+    class="fixed right-0 top-0 max-h-screen max-w-sm w-full flex flex-col gap-5 overflow-y-hidden p-5"
   >
     <transition-group
       enter-active-class="transition ease-out duration-500"
