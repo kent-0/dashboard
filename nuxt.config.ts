@@ -51,7 +51,7 @@ export default defineNuxtConfig({
         login: '/auth',
       },
       refreshToken: {
-        maxAgeInSeconds: 60 * 60 * 24 * 7,
+        maxAgeInSeconds: 14 * 24 * 60 * 60 * 1000,
         signInResponseRefreshTokenPointer: '/tokens/refreshToken',
       },
       sessionDataType: {
@@ -68,7 +68,7 @@ export default defineNuxtConfig({
         username: 'string',
       },
       token: {
-        maxAgeInSeconds: 60 * 60 * 24 * 7,
+        maxAgeInSeconds: 8 * 60 * 60 * 1000,
         signInResponseTokenPointer: '/tokens/accessToken',
       },
       type: 'refresh',
