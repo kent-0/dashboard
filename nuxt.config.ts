@@ -30,10 +30,10 @@ export default defineNuxtConfig({
           method: 'get',
           path: '/session',
         },
-        refresh: {
+        /*         refresh: {
           method: 'post',
           path: '/refresh',
-        },
+        }, */
         signIn: {
           method: 'post',
           path: '/sign-in',
@@ -50,10 +50,10 @@ export default defineNuxtConfig({
       pages: {
         login: '/auth',
       },
-      refreshToken: {
-        maxAgeInSeconds: 14 * 24 * 60 * 60 * 1000,
+      /*       refreshToken: {
+        maxAgeInSeconds: 14 * 24 * 60 * 60,
         signInResponseRefreshTokenPointer: '/tokens/refreshToken',
-      },
+      }, */
       sessionDataType: {
         biography: 'string | null',
         email: {
@@ -68,10 +68,10 @@ export default defineNuxtConfig({
         username: 'string',
       },
       token: {
-        maxAgeInSeconds: 8 * 60 * 60 * 1000,
+        maxAgeInSeconds: 8 * 60 * 60,
         signInResponseTokenPointer: '/tokens/accessToken',
       },
-      type: 'refresh',
+      type: 'local',
     },
     session: {
       enableRefreshOnWindowFocus: true,

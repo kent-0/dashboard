@@ -51,5 +51,10 @@
     "unocss-preset-animatecss": "^0.0.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@sidebase/nuxt-auth@0.6.3-alpha.1": "patches/@sidebase__nuxt-auth@0.6.3-alpha.1.patch"
+    }
   }
 }

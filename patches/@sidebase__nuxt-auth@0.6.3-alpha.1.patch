@@ -1,0 +1,26 @@
+diff --git a/dist/runtime/composables/refresh/useAuthState.mjs b/dist/runtime/composables/refresh/useAuthState.mjs
+index ab73cb4c0ad9496fdb6523973ee877d0d74855fc..ae7187a6685a9bda43fd4b324a1ac29b42b47af4 100644
+--- a/dist/runtime/composables/refresh/useAuthState.mjs
++++ b/dist/runtime/composables/refresh/useAuthState.mjs
+@@ -9,7 +9,7 @@ export const useAuthState = () => {
+     "auth:refresh-token",
+     {
+       default: () => null,
+-      maxAge: config.refreshToken.maxAgeInSeconds,
++      maxAge: config.refreshToken?.maxAgeInSeconds,
+       sameSite: "lax"
+     }
+   );
+diff --git a/dist/runtime/plugin.mjs b/dist/runtime/plugin.mjs
+index 36f46145f2e0e84defb5c78022a80ad351900241..e1c37f0210325e5071a4c5cb6f308780e2ea95f6 100644
+--- a/dist/runtime/plugin.mjs
++++ b/dist/runtime/plugin.mjs
+@@ -34,7 +34,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
+       const intervalTime = runtimeConfig.provider.token.maxAgeInSeconds * 1e3;
+       const { refresh, refreshToken } = useAuth();
+       refreshTokenIntervalTimer = setInterval(() => {
+-        if (refreshToken.value) {
++        if (refreshToken?.value) {
+           refresh();
+         }
+       }, intervalTime);

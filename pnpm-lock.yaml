@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@sidebase/nuxt-auth@0.6.3-alpha.1':
+    hash: iqs2bwpg5urhg3lrpxvoopaptm
+    path: patches/@sidebase__nuxt-auth@0.6.3-alpha.1.patch
+
 devDependencies:
   '@commitlint/cli':
     specifier: ^18.4.2
@@ -40,7 +45,7 @@ devDependencies:
     version: 4.1.0(eslint@8.55.0)(vite@4.5.1)(webpack@5.89.0)
   '@sidebase/nuxt-auth':
     specifier: 0.6.3-alpha.1
-    version: 0.6.3-alpha.1(next-auth@4.22.5)(vue@3.3.11)
+    version: 0.6.3-alpha.1(patch_hash=iqs2bwpg5urhg3lrpxvoopaptm)(next-auth@4.22.5)(vue@3.3.11)
   '@types/lint-staged':
     specifier: ^13.2.2
     version: 13.2.2
@@ -2352,7 +2357,7 @@ packages:
     resolution: {integrity: sha512-2/U3GXA6YiPYQDLGwtGlnNgKYBSwCFIHf8Y9LUY5VATHdtbLlU0Y1R3QoBnT0aB4qv/BEiVVsj7LJXoQCgJ2vA==}
     dev: true
 
-  /@sidebase/nuxt-auth@0.6.3-alpha.1(next-auth@4.22.5)(vue@3.3.11):
+  /@sidebase/nuxt-auth@0.6.3-alpha.1(patch_hash=iqs2bwpg5urhg3lrpxvoopaptm)(next-auth@4.22.5)(vue@3.3.11):
     resolution: {integrity: sha512-ohd9MJgnbG0S88d6fTs+iSg2h3jAC/kmgTGZGusjXejPKt6TzL8gaZWISimgWdr614F+Q2gDuADoFy8qa/legw==}
     peerDependencies:
       next-auth: ^4.21.1
@@ -2386,6 +2391,7 @@ packages:
       - vue
       - xml2js
     dev: true
+    patched: true
 
   /@sigstore/bundle@2.1.0:
     resolution: {integrity: sha512-89uOo6yh/oxaU8AeOUnVrTdVMcGk9Q1hJa7Hkvalc6G3Z3CupWk4Xe9djSgJm9fMkH69s0P0cVHUoKSOemLdng==}
