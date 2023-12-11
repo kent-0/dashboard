@@ -25,8 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { getSession } = useAuth();
-  const session = await getSession();
+  const { data } = useAuth();
   const avatar =
     'https://cdn.discordapp.com/avatars/1095572785482444860/1f27c2ff29fbb5ea83021e43bc646aea.png?size=512';
 
@@ -37,7 +36,7 @@
         name: 'description',
       },
     ],
-    title: `My account - ${session?.first_name} ${session?.last_name}`,
+    title: `My account - ${data.value?.first_name} ${data.value?.last_name}`,
   });
 
   definePageMeta({

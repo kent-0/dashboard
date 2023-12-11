@@ -1,7 +1,7 @@
 <template>
   <form
     class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
-    @submit.prevent="form.handleSubmit"
+    @submit.prevent="submit"
   >
     <UiLayoutDivider direction="left">
       <h2 class="text-lg font-semibold">Email</h2>
@@ -16,7 +16,7 @@
       label="Email address"
       name="email"
       icon-left="lucide:mail"
-      :placeholder="session?.email.value"
+      :placeholder="data?.email.value"
     />
     <UiLayoutDivider />
     <div class="flex justify-end">
@@ -37,12 +37,11 @@
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
 
-  const { getSession } = useAuth();
-  const session = await getSession();
+  const { data, getSession } = useAuth();
 
   const form = useForm({
     initialValues: {
-      email: session?.email.value,
+      email: data.value?.email.value,
     },
     validationSchema: toTypedSchema(
       yup.object({
@@ -50,4 +49,8 @@
       })
     ),
   });
+
+  const submit = async () => {
+    await getSession({ force: true });
+  };
 </script>

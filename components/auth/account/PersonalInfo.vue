@@ -17,7 +17,7 @@
         label="First name"
         name="first_name"
         icon-left="lucide:file-signature"
-        :placeholder="session?.first_name"
+        :placeholder="data?.first_name"
         autocomplete="given-name"
       />
       <UiFormInput
@@ -25,7 +25,7 @@
         label="Last name"
         name="last_name"
         icon-left="lucide:file-signature"
-        :placeholder="session?.last_name"
+        :placeholder="data?.last_name"
         autocomplete="family-name"
       />
       <UiFormInput
@@ -33,7 +33,7 @@
         label="Username"
         name="username"
         icon-left="lucide:at-sign"
-        :placeholder="session?.username"
+        :placeholder="data?.username"
         autocomplete="username"
       />
     </div>
@@ -58,14 +58,13 @@
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
 
-  const { getSession } = useAuth();
-  const session = await getSession();
+  const { data, getSession } = useAuth();
 
   const form = useForm({
     initialValues: {
-      first_name: session?.first_name,
-      last_name: session?.last_name,
-      username: session?.username,
+      first_name: data.value?.first_name,
+      last_name: data.value?.last_name,
+      username: data.value?.username,
     },
     validationSchema: toTypedSchema(
       yup.object({
