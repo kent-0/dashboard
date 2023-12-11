@@ -4,7 +4,7 @@
       class="flex flex-col p-5 bg-hero-graph-paper-components-card space-y-2 dark:bg-hero-graph-paper-components-cardDark"
     >
       <h1 class="text-4xl font-bold">My account</h1>
-      <p class="text-xl">Welcome, {{ session?.first_name }} {{ session?.last_name }}</p>
+      <p class="text-xl">Welcome, {{ data?.first_name }} {{ data?.last_name }}</p>
     </header>
     <UiLayoutDivider>Settings</UiLayoutDivider>
     <section class="w-full flex gap-5">
@@ -35,8 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { getSession } = useAuth();
-  const session = await getSession();
+  const { data } = useAuth();
 
   const menu = [
     {

@@ -1,0 +1,16 @@
+mutation AccountUpdate($input: AuthUpdateAccountInput!) {
+  accountUpdate(input: $input) {
+    biography
+    email {
+      is_confirmed
+      value
+    }
+    first_name
+    id
+    last_name
+    projects {
+      id
+    }
+    username
+  }
+}

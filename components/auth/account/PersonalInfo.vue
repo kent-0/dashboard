@@ -1,7 +1,7 @@
 <template>
   <form
     class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
-    @submit.prevent="form.handleSubmit"
+    @submit.prevent="submit"
   >
     <UiLayoutDivider direction="left">
       <h2 class="text-lg font-semibold">Personal information</h2>
@@ -53,6 +53,8 @@
 </template>
 
 <script lang="ts" setup>
+  import UpdateUserMutation from '~/graphql/mutations/user/update.gql';
+
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
 
@@ -79,4 +81,26 @@
       })
     ),
   });
+
+  const notifications = useNotification();
+  const mutation = useMutation(UpdateUserMutation);
+
+  const submit = async () => {
+    await mutation.mutate({ input: form.values }).catch(() => null);
+
+    if (mutation.error.value) {
+      return notifications.addNotification({
+        message: mutation.error.value?.message,
+        title: 'Error',
+        type: 'error',
+      });
+    }
+
+    await getSession({ force: true });
+    notifications.addNotification({
+      message: 'Your personal information has been updated.',
+      title: 'Success',
+      type: 'success',
+    });
+  };
 </script>
