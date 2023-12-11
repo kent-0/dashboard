@@ -137,11 +137,5 @@
   const isFocused = ref(false);
   const isShowPassword = ref(false);
 
-  const fieldName = computed(() => props.name);
-  const { errorMessage, errors, handleBlur, handleChange, value } = useField(
-    () => fieldName.value,
-    {
-      syncVModel: true,
-    }
-  );
+  const { errorMessage, errors, handleBlur, handleChange, value } = useField(() => props.name);
 </script>
