@@ -1,7 +1,12 @@
 <template>
   <nuxt-link
     role="button"
-    v-bind="$props"
+    v-bind="{
+      ...$props,
+      prefetch: $props.prefetch ?? undefined,
+      // TODO: Fix the warning when is using with prefetch prop
+      noPrefetch: undefined,
+    }"
     :class="[
       'flex items-center justify-center rounded-lg px-5 py-2 transition-all duration-300 space-x-2 text-center',
       'disabled:(opacity-50 cursor-not-allowed pointer-events-none)',

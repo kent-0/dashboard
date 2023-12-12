@@ -12,6 +12,7 @@
           like never before.
         </p>
         <ui-form-input
+          prefix="auth"
           label="First name"
           type="text"
           icon-left="lucide:book-a"
@@ -20,6 +21,7 @@
           autocomplete="given-name"
         />
         <ui-form-input
+          prefix="auth"
           label="Username"
           type="text"
           icon-left="lucide:book-a"
@@ -28,6 +30,7 @@
           autocomplete="family-name"
         />
         <ui-form-input
+          prefix="auth"
           label="Username"
           type="text"
           icon-left="lucide:user"
@@ -35,6 +38,7 @@
           name="username"
         />
         <ui-form-input
+          prefix="auth"
           label="Email"
           icon-left="lucide:mail"
           type="email"
@@ -42,6 +46,7 @@
           name="email"
         />
         <ui-form-input
+          prefix="auth"
           label="Password"
           icon-left="lucide:key"
           type="password"
@@ -49,6 +54,7 @@
           name="password"
         />
         <ui-form-input
+          prefix="auth"
           label="Confirm password"
           icon-left="lucide:key"
           type="password"

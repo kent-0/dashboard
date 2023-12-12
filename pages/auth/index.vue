@@ -26,6 +26,7 @@
           icon-left="lucide:user"
           placeholder="mycoolusernamehere"
           name="username"
+          prefix="auth"
         />
         <ui-form-input
           autocomplete="current-password"
@@ -34,6 +35,7 @@
           type="password"
           placeholder="My super secret password"
           name="password"
+          prefix="auth"
         />
         <ui-button
           :is-disabled="meta.pending || !meta.valid"

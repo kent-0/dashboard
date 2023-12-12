@@ -1,113 +1,102 @@
 <template>
-  <label class="relative flex flex-col pb-2 space-y-1" :class="$attrs.class">
-    <span
-      class="absolute transition-all duration-300"
+  <div class="flex flex-col space-y-1">
+    <div
+      class="flex items-center justify-between gap-2 rounded-md bg-components-element dark:bg-components-elementDark"
       :class="{
-        'text-xs top-3 opacity-70': isFocused || value,
-        'top-5': !isFocused && !value,
-        'text-brand dark:text-brand-dark opacity-100': isFocused && !hasError && !hasWarning,
-        'text-error dark:text-error-dark opacity-100': hasError || errors.length > 0,
-        'text-warning dark:text-warning-dark opacity-100': hasWarning,
-        'left-15 ': iconLeft,
-        'left-3': !iconLeft,
+        'py-2': type !== 'password' && !iconLeft && !iconRight,
       }"
     >
-      {{ label }}
-    </span>
-    <span class="flex space-x-0.2">
-      <span
+      <div
         v-if="iconLeft"
+        class="flex items-center justify-center border-r-2 border-r-components-card p-5 transition duration-300 dark:border-r-components-cardDark"
         :class="{
-          'text-brand dark:text-brand-dark opacity-100': isFocused && !hasError && !hasWarning,
-          'text-error dark:text-error-dark opacity-100': hasError || errors.length > 0,
-          'text-warning dark:text-warning-dark opacity-100': hasWarning,
+          'text-error dark:text-error-dark': hasError || errorMessage,
+          'text-warning dark:text-warning-dark': hasWarning && !hasError,
+          'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
         }"
-        class="flex items-center justify-center rounded-l-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
       >
-        <icon :name="iconLeft" />
-      </span>
-      <input
-        v-bind="{ ...$attrs, class: undefined }"
-        v-model="value"
-        :class="{
-          'rounded-l-lg': !iconLeft,
-          'rounded-r-lg': !iconRight,
-          'rounded-lg': !iconLeft && !iconRight,
-          'rounded-none': iconLeft && iconRight,
-          'rounded-r-none': type === 'password',
-          'focus:ring-brand dark:focus:ring-brand-dark': !hasError && !hasWarning,
-          'focus:ring-error dark:focus:ring-error-dark': hasError || errors.length > 0,
-          'focus:ring-warning dark:focus:ring-warning-dark': hasWarning,
-        }"
-        class="w-full border-none bg-components-element pb-2 pt-6 outline-none transition duration-300 disabled:(pointer-events-none cursor-not-allowed opacity-70) space-y-1 dark:bg-components-elementDark placeholder:opacity-0 focus:placeholder:opacity-100"
-        :type="isShowPassword ? 'text' : type || 'text'"
-        :disabled="disabled"
-        :label="label"
-        :placeholder="placeholder"
-        :name="name"
-        :readonly="readonly"
-        @focus="isFocused = true"
-        @blur="
-          isFocused = false;
-          handleBlur($event, true);
-        "
-        @change="handleChange($event, !!errorMessage)"
-      />
-      <span
+        <Icon :name="iconLeft" />
+      </div>
+      <div class="relative w-full">
+        <label
+          class="absolute left-3 transition-all duration-300"
+          :class="{
+            '-top-1 text-xs': isFocused || value,
+            'top-2': !isFocused && !value,
+            'text-error dark:text-error-dark': hasError || errorMessage,
+            'text-warning dark:text-warning-dark': hasWarning && !hasError,
+            'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
+          }"
+          :for="`_${$props.prefix}_input_${name}_`"
+        >
+          {{ label }}
+        </label>
+        <input
+          :id="`_${$props.prefix}_input_${name}_`"
+          v-bind="{ ...$attrs, class: undefined }"
+          v-model="value"
+          :type="isShowPassword ? 'text' : type || 'text'"
+          :disabled="disabled"
+          :label="label"
+          :placeholder="placeholder"
+          :name="name"
+          :readonly="readonly"
+          class="w-full border-none bg-transparent outline-none placeholder:opacity-0 focus:ring-0 focus:placeholder:opacity-100"
+          @focus="isFocused = true"
+          @blur="
+            isFocused = false;
+            handleBlur($event, true);
+          "
+          @change="handleChange($event, !!errorMessage)"
+        />
+      </div>
+      <div
         v-if="iconRight && type !== 'password'"
+        class="flex items-center justify-center border-l-2 border-l-components-card p-5 dark:border-l-components-cardDark"
         :class="{
-          'text-brand dark:text-brand-dark opacity-100': isFocused,
+          'text-error dark:text-error-dark': hasError || errorMessage,
+          'text-warning dark:text-warning-dark': hasWarning && !hasError,
+          'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
         }"
-        class="flex items-center justify-center border-l-2 border-l-components-card rounded-r-lg bg-components-element px-4 py-3 transition duration-300 dark:border-l-components-cardDark dark:bg-components-elementDark"
       >
-        <icon :name="iconRight" />
-      </span>
-      <span
+        <Icon :name="iconRight" />
+      </div>
+      <div
         v-if="type === 'password'"
-        class="flex cursor-pointer items-center justify-center rounded-r-lg bg-components-element px-4 py-3 transition duration-300 dark:bg-components-elementDark"
+        class="flex items-center justify-center border-l-2 border-l-components-card p-5 dark:border-l-components-cardDark"
         @click="isShowPassword = !isShowPassword"
       >
-        <icon :name="isShowPassword ? 'lucide:eye-off' : 'lucide:eye'" />
-      </span>
-    </span>
-
-    <small
-      v-if="errors.length === 0"
-      class="absolute left-1 flex items-center transition-all duration-300 -bottom-4 space-x-1"
-      :class="{
-        'opacity-100': hint,
-        'opacity-0': !hint,
-        'text-error dark:text-error-dark': hasError,
-        'text-warning dark:text-warning-dark': hasWarning,
-        'text-black dark:text-white': !hasError && !hasWarning,
-        'opacity-70': hint && !hasError && !hasWarning,
-      }"
+        <Icon :name="isShowPassword ? 'lucide:eye-off' : 'lucide:eye'" />
+      </div>
+    </div>
+    <div
+      v-show="errorMessage && !hasError && !hasWarning"
+      class="flex select-none items-center text-error space-x-2 dark:text-error-dark"
     >
-      <icon v-if="hasError" name="lucide:alert-circle" />
-      <icon v-if="hasWarning" name="lucide:alert-triangle" />
-      <span class="line-clamp-1">{{ hint }}</span>
-    </small>
-
-    <client-only>
-      <transition-group
-        v-if="errors.length > 0"
-        enter-active-class="transition ease-out duration-300"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition ease-in duration-300"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
-        <small
-          :key="errors[0]"
-          class="absolute left-1 flex items-center text-error transition-all duration-300 -bottom-4 space-x-1 dark:text-error-dark"
-        >
-          <icon name="lucide:alert-circle" />
-          <span class="line-clamp-1">{{ errors[0] }}</span>
-        </small>
-      </transition-group>
-    </client-only>
-  </label>
+      <icon name="lucide:alert-circle" />
+      <small>
+        {{ errorMessage }}
+      </small>
+    </div>
+    <div
+      v-show="!errorMessage && hasError && !hasWarning"
+      class="flex select-none items-center text-error space-x-2 dark:text-error-dark"
+    >
+      <icon name="lucide:alert-circle" />
+      <small>
+        {{ errorMessage }}
+      </small>
+    </div>
+    <div
+      v-show="!errorMessage && !hasError && hasWarning"
+      class="flex select-none items-center text-warning space-x-2 dark:text-warning-dark"
+    >
+      <icon name="lucide:alert-circle" />
+      <small>
+        {{ hint }}
+      </small>
+    </div>
+  </div>
 </template>
 <script setup lang="ts">
   import { useField } from 'vee-validate';
@@ -135,6 +124,7 @@
     label: string;
     name: string;
     placeholder?: string;
+    prefix: string;
     readonly?: boolean;
     type: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
   }>();
@@ -143,5 +133,5 @@
   const isShowPassword = ref(false);
 
   const inputName = toRef(props, 'name');
-  const { errorMessage, errors, handleBlur, handleChange, value } = useField(inputName);
+  const { errorMessage, handleBlur, handleChange, value } = useField(inputName);
 </script>
