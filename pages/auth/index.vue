@@ -75,51 +75,25 @@
 </template>
 <script setup lang="ts">
   import { toTypedSchema } from '@vee-validate/yup';
-  import * as yup from 'yup';
-
-  useHead({
-    meta: [
-      {
-        content: 'Sign in to your account to continue using our services.',
-        name: 'description',
-      },
-    ],
-    title: 'Sign In',
-  });
-
-  definePageMeta({
-    auth: {
-      navigateAuthenticatedTo: '/',
-      unauthenticatedOnly: true,
-    },
-  });
-
-  const notifications = useNotification();
-  const route = useRoute();
-
-  const schema = toTypedSchema(
-    yup.object({
-      password: yup
-        .string()
-        .required('The password is required.')
-        .min(8)
-        .max(100)
-        .label('Password'),
-      username: yup
-        .string()
-        .required()
-        .min(3)
-        .max(20)
-        .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.')
-        .label('Username'),
-    })
-  );
+  import { object, string } from 'yup';
 
   const { meta, values } = useForm({
-    validationSchema: schema,
+    validationSchema: toTypedSchema(
+      object({
+        password: string().required().min(8).max(100).label('Password'),
+        username: string()
+          .required()
+          .min(3)
+          .max(20)
+          .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.')
+          .label('Username'),
+      })
+    ),
   });
 
   const { signIn } = useAuth();
+  const notifications = useNotification();
+  const route = useRoute();
 
   const submit = async () => {
     if (!meta.value.valid) {
@@ -149,4 +123,21 @@
       });
     });
   };
+
+  useHead({
+    meta: [
+      {
+        content: 'Sign in to your account to continue using our services.',
+        name: 'description',
+      },
+    ],
+    title: 'Sign In',
+  });
+
+  definePageMeta({
+    auth: {
+      navigateAuthenticatedTo: '/',
+      unauthenticatedOnly: true,
+    },
+  });
 </script>

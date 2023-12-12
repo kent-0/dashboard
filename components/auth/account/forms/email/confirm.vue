@@ -46,8 +46,10 @@
 <script lang="ts" setup>
   import ConfirmEmailMutation from '@/graphql/mutations/email/confirm.gql';
   import { toTypedSchema } from '@vee-validate/yup';
-  import * as yup from 'yup';
+  import { object, string } from 'yup';
 
+  const notifications = useNotification();
+  const mutation = useMutation(ConfirmEmailMutation);
   const { data, getSession } = useAuth();
 
   const form = useForm({
@@ -55,14 +57,11 @@
       code: '',
     },
     validationSchema: toTypedSchema(
-      yup.object({
-        code: yup.string().required().label('Activation code').min(9).max(9),
+      object({
+        code: string().required().label('Activation code').min(9).max(9),
       })
     ),
   });
-
-  const notifications = useNotification();
-  const mutation = useMutation(ConfirmEmailMutation);
 
   const submit = async () => {
     await mutation

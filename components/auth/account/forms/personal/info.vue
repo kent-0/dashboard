@@ -58,6 +58,8 @@
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
 
+  const notifications = useNotification();
+  const mutation = useMutation(UpdateUserMutation);
   const { data, getSession } = useAuth();
 
   const form = useForm({
@@ -80,9 +82,6 @@
       })
     ),
   });
-
-  const notifications = useNotification();
-  const mutation = useMutation(UpdateUserMutation);
 
   const submit = async () => {
     await mutation.mutate({ input: form.values }).catch(() => null);

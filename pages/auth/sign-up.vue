@@ -79,64 +79,31 @@
 </template>
 <script setup lang="ts">
   import { toTypedSchema } from '@vee-validate/yup';
-  import * as yup from 'yup';
-
-  useHead({
-    meta: [
-      {
-        content: 'Register your user account and manage your projects like never before.',
-        name: 'description',
-      },
-    ],
-    title: 'Sign Up',
-  });
-
-  definePageMeta({
-    auth: {
-      navigateAuthenticatedTo: '/',
-      unauthenticatedOnly: true,
-    },
-  });
-
-  const notifications = useNotification();
-
-  const schema = toTypedSchema(
-    yup.object({
-      confirmPassword: yup
-        .string()
-        .required()
-        .label('Password confirmation')
-        .oneOf([yup.ref('password')], 'The password confirmation does not match.'),
-      email: yup.string().required().label('Email').email(),
-      first_name: yup
-        .string()
-        .required()
-        .label('First name')
-        .min(3, 'The first name must be longer than 3 characters.')
-        .max(30, 'The first name should be less than 30 characters.'),
-      last_name: yup
-        .string()
-        .required()
-        .label('Last name')
-        .min(3, 'The last name must be longer than 3 characters.')
-        .max(30, 'The last name should be less than 30 characters.'),
-      password: yup.string().required().label('Password').min(8).max(100),
-      username: yup
-        .string()
-        .required()
-        .min(3)
-        .max(20)
-        .label('Username')
-        .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.'),
-    })
-  );
-
-  const { meta, values } = useForm({
-    validationSchema: schema,
-  });
+  import { object, ref, string } from 'yup';
 
   const { signUp } = useAuth();
   const route = useRoute();
+  const notifications = useNotification();
+  const { meta, values } = useForm({
+    validationSchema: toTypedSchema(
+      object({
+        confirmPassword: string()
+          .required()
+          .label('Password confirmatsion')
+          .oneOf([ref('password')], 'The password confirmation does not match.'),
+        email: string().required().label('Email').email(),
+        first_name: string().required().label('First name').min(3).max(30),
+        last_name: string().required().label('Last name').min(3).max(30),
+        password: string().required().label('Password').min(8).max(100),
+        username: string()
+          .required()
+          .min(3)
+          .max(20)
+          .label('Username')
+          .matches(/^[A-Za-z0-9_-]+$/, 'The user name must be alphanumeric with no blank spaces.'),
+      })
+    ),
+  });
 
   const submit = async () => {
     if (!meta.value.valid) {
@@ -175,4 +142,21 @@
       });
     });
   };
+
+  useHead({
+    meta: [
+      {
+        content: 'Register your user account and manage your projects like never before.',
+        name: 'description',
+      },
+    ],
+    title: 'Sign Up',
+  });
+
+  definePageMeta({
+    auth: {
+      navigateAuthenticatedTo: '/',
+      unauthenticatedOnly: true,
+    },
+  });
 </script>
