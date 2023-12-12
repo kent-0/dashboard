@@ -86,22 +86,24 @@
       <span class="line-clamp-1">{{ hint }}</span>
     </small>
 
-    <transition-group
-      enter-active-class="transition ease-out duration-300"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition ease-in duration-300"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
-      <small
+    <client-only>
+      <transition-group
         v-if="errors.length > 0"
-        class="absolute left-1 flex items-center text-error transition-all duration-300 -bottom-4 space-x-1 dark:text-error-dark"
+        enter-active-class="transition ease-out duration-300"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition ease-in duration-300"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
       >
-        <icon name="lucide:alert-circle" />
-        <span class="line-clamp-1">{{ errors[0] }}</span>
-      </small>
-    </transition-group>
+        <small
+          class="absolute left-1 flex items-center text-error transition-all duration-300 -bottom-4 space-x-1 dark:text-error-dark"
+        >
+          <icon name="lucide:alert-circle" />
+          <span class="line-clamp-1">{{ errors[0] }}</span>
+        </small>
+      </transition-group>
+    </client-only>
   </label>
 </template>
 <script setup lang="ts">
