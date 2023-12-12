@@ -1,10 +1,19 @@
 <template>
   <main class="mx-auto p-10 container space-y-5">
     <header
-      class="flex flex-col p-5 bg-hero-graph-paper-components-card space-y-2 dark:bg-hero-graph-paper-components-cardDark"
+      class="flex items-center justify-between gap-4 p-5 bg-hero-graph-paper-components-card dark:bg-hero-graph-paper-components-cardDark"
     >
-      <h1 class="text-4xl font-bold">My account</h1>
-      <p class="text-xl">Welcome, {{ data?.first_name }} {{ data?.last_name }}</p>
+      <div class="flex flex-col space-y-2">
+        <h1 class="text-4xl font-bold">My account</h1>
+        <p class="text-xl">Welcome, {{ data?.first_name }} {{ data?.last_name }}</p>
+      </div>
+      <UiButtonError
+        variant="soft"
+        aria-label="Close the current user session"
+        @click="signOut({ redirect: true, callbackUrl: '/auth' })"
+      >
+        Sign Out
+      </UiButtonError>
     </header>
     <UiLayoutDivider>Settings</UiLayoutDivider>
     <section class="w-full flex gap-5">
@@ -35,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { data } = useAuth();
+  const { data, signOut } = useAuth();
 
   const menu = [
     {

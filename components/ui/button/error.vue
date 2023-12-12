@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'flex items-center justify-center rounded-lg px-5 py-2 transition-all duration-300 space-x-2 text-center',
+      'flex items-center justify-center rounded-lg px-5 py-2 transition-all duration-300 space-x-2 text-center h-fit',
       'disabled:(opacity-50 cursor-not-allowed pointer-events-none)',
       {
         'bg-transparent text-error dark:text-error-dark hover:(bg-error/30 dark:bg-error-dark/30) active:(bg-error/20 dark:bg-error-dark/20)':
