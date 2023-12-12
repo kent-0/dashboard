@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-fit max-w-sm w-full flex items-center rounded-lg bg-components-card p-5 space-x-5 dark:bg-components-cardDark"
+    class="h-fit max-w-sm w-full flex items-center rounded-lg bg-components-element p-5 space-x-5 dark:bg-components-elementDark"
   >
     <div
       class="flex items-center justify-center"
@@ -55,7 +55,7 @@
   withDefaults(
     defineProps<
       NotificationOptions & {
-        removeNotification: (notification: NotificationOptions) => void;
+        removeNotification: () => void;
       }
     >(),
     {

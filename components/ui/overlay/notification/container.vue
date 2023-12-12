@@ -17,7 +17,7 @@
         :actions="notification.actions"
         :message="notification.message"
         :type="notification.type"
-        :remove-notification="notifications.removeNotification"
+        :remove-notification="() => notifications.removeNotification(notification)"
       />
     </transition-group>
   </div>
