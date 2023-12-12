@@ -6,9 +6,9 @@
       </UiLayoutDivider>
       <div class="flex items-center justify-between gap-5">
         <p class="max-w-lg opacity-50">
-          Your avatar is used to identify you across the platform. It is visible to other users and
-          can be changed at any time. It is recommended to use a square image. The image will be
-          resized to 512x512 pixels. The maximum file size is 2MB.
+          Your avatar is used to identify you across the platform and is visible to other users. To
+          change your avatar, click on it and select a new one. The image file size must be less
+          than 2MB and the format must be JPG, PNG or GIF.
         </p>
         <NuxtImg
           :src="avatar"
@@ -16,7 +16,7 @@
         />
       </div>
     </div>
-    <AuthAccountPersonalInfo />
+    <AuthAccountFormsPersonalInfo />
     <div class="grid grid-cols-2 gap-5">
       <div
         class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
@@ -35,7 +35,7 @@
           {{ data?.email.value }}
         </p>
       </div>
-      <AuthAccountEmailConfirm />
+      <AuthAccountFormsEmailConfirm />
     </div>
   </main>
 </template>
