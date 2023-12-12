@@ -1,6 +1,6 @@
 <template>
   <form
-    class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
+    class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
     @submit.prevent="submit"
   >
     <UiLayoutDivider direction="left">

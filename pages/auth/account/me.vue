@@ -18,7 +18,23 @@
     </div>
     <AuthAccountPersonalInfo />
     <div class="grid grid-cols-2 gap-5">
-      <AuthAccountEmailUpdate />
+      <div
+        class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
+      >
+        <UiLayoutDivider direction="left">
+          <h2 class="text-lg font-semibold">Email</h2>
+        </UiLayoutDivider>
+        <p class="opacity-50">
+          Your email address is used to identify you across the platform. It is visible to other
+          users and cant be changed at any time. This email address is also used to send you
+          notifications and newsletters.
+        </p>
+        <p
+          class="rounded-mg rounded-md bg-components-element p-3 text-center dark:bg-components-elementDark"
+        >
+          {{ data?.email.value }}
+        </p>
+      </div>
       <AuthAccountEmailConfirm />
     </div>
   </main>
