@@ -1,49 +1,87 @@
 <template>
   <form
     class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
-    @submit.prevent="form.handleSubmit"
+    @submit.prevent="submit"
   >
     <UiLayoutDivider direction="left">
       <h2 class="text-lg font-semibold">Confirm email</h2>
     </UiLayoutDivider>
-    <p class="opacity-50">
-      Seem like you haven't confirmed your email address yet. Please check your inbox and paste the
-      confirmation code below. If you haven't received the email, please check your spam folder.
-    </p>
-    <UiFormInput
-      type="email"
-      label="Activation token"
-      name="email_token"
-      icon-left="lucide:braces"
-      placeholder="123ABC456"
-    />
-    <UiLayoutDivider />
-    <div class="flex justify-end">
-      <UiButton
-        icon-left="lucide:save-all"
-        variant="solid"
-        aria-label="Save the new user info"
-        type="submit"
-        :is-disabled="form.meta.value.pending || !form.meta.value.valid"
-      >
-        Save changes
-      </UiButton>
+    <template v-if="!data?.email.is_confirmed">
+      <p class="opacity-50">
+        Seem like you haven't confirmed your email address yet. Please check your inbox and paste
+        the confirmation code below. If you haven't received the email, please check your spam
+        folder.
+      </p>
+      <UiFormInput
+        type="text"
+        label="Activation code"
+        name="code"
+        icon-left="lucide:braces"
+        placeholder="123ABC456"
+        autocomplete="off"
+      />
+      <UiLayoutDivider />
+      <div class="flex justify-end">
+        <UiButton
+          icon-left="lucide:save-all"
+          variant="solid"
+          aria-label="Save the new user info"
+          type="submit"
+          :is-disabled="form.meta.value.pending || !form.meta.value.valid"
+        >
+          Save changes
+        </UiButton>
+      </div>
+    </template>
+    <div
+      v-show="data?.email.is_confirmed"
+      class="h-full w-full flex flex flex-col items-center justify-center text-center space-y-3"
+    >
+      <Icon name="lucide:check-check" class="text-5xl" />
+      <p>Your email address has been confirmed. You can now use all the features.</p>
     </div>
   </form>
 </template>
 
 <script lang="ts" setup>
+  import ConfirmEmailMutation from '@/graphql/mutations/email/confirm.gql';
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
 
+  const { data, getSession } = useAuth();
+
   const form = useForm({
     initialValues: {
-      email_token: '',
+      code: '',
     },
     validationSchema: toTypedSchema(
       yup.object({
-        email_token: yup.string().required().label('Activation token').min(6).max(6),
+        code: yup.string().required().label('Activation code').min(9).max(9),
       })
     ),
   });
+
+  const notifications = useNotification();
+  const mutation = useMutation(ConfirmEmailMutation);
+
+  const submit = async () => {
+    await mutation
+      .mutate({ input: { ...form.values, email: data.value?.email.value } })
+      .catch(() => null);
+
+    if (mutation.error.value) {
+      return notifications.addNotification({
+        message: mutation.error.value.message,
+        title: 'Error',
+        type: 'error',
+      });
+    }
+
+    await getSession({ force: true });
+    notifications.addNotification({
+      message: 'Your email address has been confirmed.',
+      title: 'Success',
+      type: 'success',
+    });
+  };
 </script>

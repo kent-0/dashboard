@@ -1,0 +1,6 @@
+mutation ConfirmEmail($input: AuthConfirmEmailInput!) {
+  confirmEmail(input: $input) {
+    value
+    is_confirmed
+  }
+}
