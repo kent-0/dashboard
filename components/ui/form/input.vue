@@ -137,11 +137,6 @@
   const isFocused = ref(false);
   const isShowPassword = ref(false);
 
-  const { errorMessage, errors, handleBlur, handleChange, value } = useField(
-    () => props.name,
-    {},
-    {
-      syncVModel: true,
-    }
-  );
+  const inputName = toRef(props, 'name');
+  const { errorMessage, errors, handleBlur, handleChange, value } = useField(inputName);
 </script>
