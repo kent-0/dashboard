@@ -1,6 +1,8 @@
 <template>
   <nuxt-layout>
     <nuxt-page />
-    <ui-overlay-notification-container />
+    <client-only>
+      <ui-overlay-notification-container />
+    </client-only>
   </nuxt-layout>
 </template>

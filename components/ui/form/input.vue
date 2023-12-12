@@ -1,13 +1,15 @@
 <template>
   <label class="relative flex flex-col pb-2 space-y-1" :class="$attrs.class">
     <span
-      class="absolute left-15 transition-all duration-300"
+      class="absolute transition-all duration-300"
       :class="{
         'text-xs top-3 opacity-70': isFocused || value,
         'top-5': !isFocused && !value,
         'text-brand dark:text-brand-dark opacity-100': isFocused && !hasError && !hasWarning,
         'text-error dark:text-error-dark opacity-100': hasError || errors.length > 0,
         'text-warning dark:text-warning-dark opacity-100': hasWarning,
+        'left-15 ': iconLeft,
+        'left-3': !iconLeft,
       }"
     >
       {{ label }}

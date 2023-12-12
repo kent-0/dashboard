@@ -3,16 +3,16 @@
     class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
     @submit.prevent="submit"
   >
-    <UiLayoutDivider direction="left">
+    <ui-layout-divider direction="left">
       <h2 class="text-lg font-semibold">Personal information</h2>
-    </UiLayoutDivider>
+    </ui-layout-divider>
     <p class="opacity-50">
       Your personal information is used to identify you across the platform. It is visible to other
       users and can be changed at any time. Remember respect the rules of the platform and do not
       use offensive words.
     </p>
     <div class="grid grid-cols-3 gap-5">
-      <UiFormInput
+      <ui-form-input
         type="text"
         label="First name"
         name="first_name"
@@ -20,7 +20,7 @@
         :placeholder="data?.first_name"
         autocomplete="given-name"
       />
-      <UiFormInput
+      <ui-form-input
         type="text"
         label="Last name"
         name="last_name"
@@ -28,7 +28,7 @@
         :placeholder="data?.last_name"
         autocomplete="family-name"
       />
-      <UiFormInput
+      <ui-form-input
         type="text"
         label="Username"
         name="username"
@@ -37,9 +37,9 @@
         autocomplete="username"
       />
     </div>
-    <UiLayoutDivider />
+    <ui-layout-divider />
     <div class="flex justify-end">
-      <UiButton
+      <ui-button
         icon-left="lucide:save-all"
         variant="solid"
         aria-label="Save the new user info"
@@ -47,7 +47,7 @@
         :is-disabled="form.meta.value.pending || !form.meta.value.valid"
       >
         Save changes
-      </UiButton>
+      </ui-button>
     </div>
   </form>
 </template>

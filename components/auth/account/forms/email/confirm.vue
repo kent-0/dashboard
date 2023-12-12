@@ -3,16 +3,16 @@
     class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
     @submit.prevent="submit"
   >
-    <UiLayoutDivider direction="left">
+    <ui-layout-divider direction="left">
       <h2 class="text-lg font-semibold">Confirm email</h2>
-    </UiLayoutDivider>
+    </ui-layout-divider>
     <template v-if="!data?.email.is_confirmed">
       <p class="opacity-50">
         Seem like you haven't confirmed your email address yet. Please check your inbox and paste
         the confirmation code below. If you haven't received the email, please check your spam
         folder.
       </p>
-      <UiFormInput
+      <ui-form-input
         type="text"
         label="Activation code"
         name="code"
@@ -20,9 +20,9 @@
         placeholder="123ABC456"
         autocomplete="off"
       />
-      <UiLayoutDivider />
+      <ui-layout-divider />
       <div class="flex justify-end">
-        <UiButton
+        <ui-button
           icon-left="lucide:save-all"
           variant="solid"
           aria-label="Save the new user info"
@@ -30,7 +30,7 @@
           :is-disabled="form.meta.value.pending || !form.meta.value.valid"
         >
           Save changes
-        </UiButton>
+        </ui-button>
       </div>
     </template>
     <div

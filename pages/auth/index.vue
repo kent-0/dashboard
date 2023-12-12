@@ -5,19 +5,21 @@
     ></div>
     <div class="w-1/2 flex flex-col items-center justify-center py-5">
       <form class="max-w-110 flex flex-col space-y-5" @submit.prevent="submit">
-        <UiLayoutDivider direction="right">Kento</UiLayoutDivider>
+        <ui-layout-divider direction="right">Kento</ui-layout-divider>
         <h1 class="text-5xl font-title">Welcome back!</h1>
         <p>
           Please sign in to your account to continue using our services. If you don't have an
           account yet, you can create one by clicking the button below.
         </p>
-        <ui-overlay-notification-individual
-          v-if="route.query?.error === 'CredentialsSignin'"
-          title="Crendetials wrong"
-          message="The username or password you entered is incorrect. Please check your credentials and try again."
-          type="warning"
-        />
-        <UiFormInput
+        <client-only>
+          <ui-overlay-notification-individual
+            v-if="route.query?.error === 'CredentialsSignin'"
+            title="Crendetials wrong"
+            message="The username or password you entered is incorrect. Please check your credentials and try again."
+            type="warning"
+          />
+        </client-only>
+        <ui-form-input
           autocomplete="username"
           label="Username"
           type="text"
@@ -25,7 +27,7 @@
           placeholder="mycoolusernamehere"
           name="username"
         />
-        <UiFormInput
+        <ui-form-input
           autocomplete="current-password"
           label="Password"
           icon-left="lucide:key"
@@ -49,7 +51,7 @@
         >
           Sign Up
         </ui-button-link>
-        <UiLayoutDivider>Or login using social networks</UiLayoutDivider>
+        <ui-layout-divider>Or login using social networks</ui-layout-divider>
         <div class="grid grid-cols-2 gap-5">
           <ui-button
             variant="ghost"
@@ -68,7 +70,7 @@
             Twitter
           </ui-button>
         </div>
-        <UiLayoutDivider direction="left">Authentication</UiLayoutDivider>
+        <ui-layout-divider direction="left">Authentication</ui-layout-divider>
       </form>
     </div>
   </div>

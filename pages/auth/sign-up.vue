@@ -5,13 +5,13 @@
     ></div>
     <div class="w-1/2 flex flex-col items-center justify-center py-5">
       <form class="max-w-110 flex flex-col space-y-5" @submit.prevent="submit">
-        <UiLayoutDivider direction="right">Kento</UiLayoutDivider>
+        <ui-layout-divider direction="right">Kento</ui-layout-divider>
         <h1 class="text-5xl font-title">We're glad to have you here.</h1>
         <p>
           Please complete the required fields to register your user account and manage your projects
           like never before.
         </p>
-        <UiFormInput
+        <ui-form-input
           label="First name"
           type="text"
           icon-left="lucide:book-a"
@@ -19,7 +19,7 @@
           name="first_name"
           autocomplete="given-name"
         />
-        <UiFormInput
+        <ui-form-input
           label="Username"
           type="text"
           icon-left="lucide:book-a"
@@ -27,28 +27,28 @@
           name="last_name"
           autocomplete="family-name"
         />
-        <UiFormInput
+        <ui-form-input
           label="Username"
           type="text"
           icon-left="lucide:user"
           placeholder="mycoolusernamehere"
           name="username"
         />
-        <UiFormInput
+        <ui-form-input
           label="Email"
           icon-left="lucide:mail"
           type="email"
           placeholder="example@kento.app"
           name="email"
         />
-        <UiFormInput
+        <ui-form-input
           label="Password"
           icon-left="lucide:key"
           type="password"
           placeholder="My super secret password"
           name="password"
         />
-        <UiFormInput
+        <ui-form-input
           label="Confirm password"
           icon-left="lucide:key"
           type="password"
@@ -63,7 +63,7 @@
         >
           Join to the platform
         </ui-button>
-        <UiLayoutDivider>Already have an account?</UiLayoutDivider>
+        <ui-layout-divider>Already have an account?</ui-layout-divider>
         <ui-button-link
           :is-disabled="meta.pending"
           aria-label="Go to sign in page"
@@ -72,7 +72,7 @@
         >
           Sign In
         </ui-button-link>
-        <UiLayoutDivider direction="left">Authentication</UiLayoutDivider>
+        <ui-layout-divider direction="left">Authentication</ui-layout-divider>
       </form>
     </div>
   </div>

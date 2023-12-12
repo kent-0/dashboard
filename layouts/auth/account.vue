@@ -7,31 +7,31 @@
         <h1 class="text-4xl font-bold">My account</h1>
         <p class="text-xl">Welcome, {{ data?.first_name }} {{ data?.last_name }}</p>
       </div>
-      <UiButtonError
+      <ui-buttonError
         variant="soft"
         aria-label="Close the current user session"
         @click="signOut({ redirect: true, callbackUrl: '/auth' })"
       >
         Sign Out
-      </UiButtonError>
+      </ui-buttonError>
     </header>
-    <UiLayoutDivider>Settings</UiLayoutDivider>
+    <ui-layout-divider>Settings</ui-layout-divider>
     <section class="w-full flex gap-5">
       <aside
         class="rounded-mg sticky top-5 h-fit w-1/3 flex flex-col rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
       >
         <template v-for="section in menu" :key="section.title">
-          <UiLayoutDivider direction="left">{{ section.title }}</UiLayoutDivider>
+          <ui-layout-divider direction="left">{{ section.title }}</ui-layout-divider>
           <ul class="space-y-2">
             <li v-for="item in section.items" :key="item.href" class="flex">
-              <NuxtLink
+              <nuxt-link
                 class="w-full flex items-center rounded-md px-4 py-2 transition duration-300 space-x-2 hover:(bg-brand/10 text-brand dark:bg-brand-dark/20 dark:text-brand-dark)"
                 active-class="bg-brand/20 dark:bg-brand-dark/30 text-brand dark:text-brand-dark font-medium"
                 :href="item.href"
               >
                 <Icon :name="item.icon" />
                 <span>{{ item.title }}</span>
-              </NuxtLink>
+              </nuxt-link>
             </li>
           </ul>
         </template>

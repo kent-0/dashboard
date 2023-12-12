@@ -1,9 +1,9 @@
 <template>
   <main class="flex flex flex-col space-y-5">
     <div class="w-full rounded-md bg-components-card p-5 dark:bg-components-cardDark">
-      <UiLayoutDivider direction="left">
+      <ui-layout-divider direction="left">
         <h2 class="text-lg font-semibold">Avatar</h2>
-      </UiLayoutDivider>
+      </ui-layout-divider>
       <div class="flex items-center justify-between gap-5">
         <p class="max-w-lg opacity-50">
           Your avatar is used to identify you across the platform and is visible to other users. To
@@ -16,14 +16,14 @@
         />
       </div>
     </div>
-    <AuthAccountFormsPersonalInfo />
+    <auth-account-forms-personal-info />
     <div class="grid grid-cols-2 gap-5">
       <div
         class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
       >
-        <UiLayoutDivider direction="left">
+        <ui-layout-divider direction="left">
           <h2 class="text-lg font-semibold">Email</h2>
-        </UiLayoutDivider>
+        </ui-layout-divider>
         <p class="opacity-50">
           Your email address is used to identify you across the platform. It is visible to other
           users and cant be changed at any time. This email address is also used to send you
@@ -35,7 +35,7 @@
           {{ data?.email.value }}
         </p>
       </div>
-      <AuthAccountFormsEmailConfirm />
+      <auth-account-forms-email-confirm />
     </div>
   </main>
 </template>
