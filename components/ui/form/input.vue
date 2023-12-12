@@ -97,6 +97,7 @@
         leave-to-class="opacity-0"
       >
         <small
+          :key="errors[0]"
           class="absolute left-1 flex items-center text-error transition-all duration-300 -bottom-4 space-x-1 dark:text-error-dark"
         >
           <icon name="lucide:alert-circle" />
