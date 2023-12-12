@@ -17,15 +17,16 @@
       >
         <Icon :name="iconLeft" />
       </div>
-      <div class="relative w-full">
+      <div class="relative h-full w-full flex items-end py-2">
         <label
-          class="absolute left-3 transition-all duration-300"
+          class="absolute transition-all duration-300"
           :class="{
-            '-top-1 text-xs': isFocused || value,
-            'top-2': !isFocused && !value,
+            'top-3 text-xs': isFocused || value,
+            'top-4': !isFocused && !value,
             'text-error dark:text-error-dark': hasError || errorMessage,
             'text-warning dark:text-warning-dark': hasWarning && !hasError,
             'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
+            'opacity-50': !errorMessage && !hasError && !hasWarning && !isFocused,
           }"
           :for="`_${$props.prefix}_input_${name}_`"
         >
@@ -41,7 +42,7 @@
           :placeholder="placeholder"
           :name="name"
           :readonly="readonly"
-          class="w-full border-none bg-transparent outline-none placeholder:opacity-0 focus:ring-0 focus:placeholder:opacity-100"
+          class="w-full border-none bg-transparent p-0 outline-none placeholder:opacity-0 focus:ring-0 focus:placeholder:opacity-100"
           @focus="isFocused = true"
           @blur="
             isFocused = false;
