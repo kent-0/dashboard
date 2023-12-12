@@ -19,6 +19,7 @@
         icon-left="lucide:braces"
         placeholder="123ABC456"
         autocomplete="off"
+        prefix="email"
       />
       <ui-layout-divider />
       <div class="flex justify-end">

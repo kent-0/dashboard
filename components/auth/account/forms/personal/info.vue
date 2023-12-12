@@ -19,6 +19,7 @@
         icon-left="lucide:file-signature"
         :placeholder="data?.first_name"
         autocomplete="given-name"
+        prefix="personal"
       />
       <ui-form-input
         type="text"
@@ -27,6 +28,7 @@
         icon-left="lucide:file-signature"
         :placeholder="data?.last_name"
         autocomplete="family-name"
+        prefix="personal"
       />
       <ui-form-input
         type="text"
@@ -35,6 +37,7 @@
         icon-left="lucide:at-sign"
         :placeholder="data?.username"
         autocomplete="username"
+        prefix="personal"
       />
     </div>
     <ui-layout-divider />
