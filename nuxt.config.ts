@@ -85,6 +85,18 @@ export default defineNuxtConfig({
   },
   css: ['@unocss/reset/tailwind-compat.css', '~/assets/css/main.css'],
   devtools: { enabled: true },
+  image: {
+    presets: {
+      avatar: {
+        modifiers: {
+          fit: 'cover',
+          format: 'webp',
+          height: 64,
+          width: 64,
+        },
+      },
+    },
+  },
   imports: {
     dirs: ['composables/**'],
   },

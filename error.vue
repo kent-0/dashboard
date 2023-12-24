@@ -11,6 +11,13 @@
     <h4 class="max-w-2xl animate-fade-in-up text-lg">
       {{ errorDescription }}
     </h4>
+    <dev-only>
+      <div
+        class="animate-fade-in-up rounded-md bg-components-card p-5 font-mono dark:bg-components-cardDark"
+      >
+        {{ error.message }}
+      </div>
+    </dev-only>
     <div class="flex animate-fade-in-up gap-5">
       <ui-button
         icon-left="lucide:arrow-left"

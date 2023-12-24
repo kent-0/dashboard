@@ -10,9 +10,9 @@
           change your avatar, click on it and select a new one. The image file size must be less
           than 2MB and the format must be JPG, PNG or GIF.
         </p>
-        <NuxtImg
-          :src="avatar"
-          class="h-30 w-30 cursor-pointer rounded-full ring-4 ring-brand transition duration-300 hover:ring-6 dark:ring-brand-dark"
+        <UiElementsAvatar
+          :name="`${data?.first_name} ${data?.last_name}`"
+          class="h-30 w-30 hover:(ring-2 ring-brand dark:ring-brand-dark)"
         />
       </div>
     </div>
@@ -42,8 +42,6 @@
 
 <script lang="ts" setup>
   const { data } = useAuth();
-  const avatar =
-    'https://cdn.discordapp.com/avatars/1095572785482444860/1f27c2ff29fbb5ea83021e43bc646aea.png?size=512';
 
   useHead({
     meta: [
