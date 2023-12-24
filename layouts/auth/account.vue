@@ -7,13 +7,30 @@
         <h1 class="text-4xl font-bold font-title">My account</h1>
         <p class="text-xl">{{ data?.first_name }} {{ data?.last_name }}</p>
       </div>
-      <ui-buttonError
-        variant="soft"
-        aria-label="Close the current user session"
-        @click="signOut({ redirect: true, callbackUrl: '/auth' })"
-      >
-        Sign Out
-      </ui-buttonError>
+      <div class="flex gap-3">
+        <ui-button-icon
+          v-show="colorMode.preference === 'light'"
+          variant="soft"
+          aria-label="Change the current theme"
+          icon="lucide:moon"
+          @click="changeTheme"
+        />
+        <ui-button-icon
+          v-show="colorMode.preference === 'dark'"
+          variant="soft"
+          aria-label="Change the current theme"
+          icon="lucide:sun"
+          @click="changeTheme"
+        />
+        <ui-buttonError
+          variant="soft"
+          aria-label="Close the current user session"
+          icon-left="lucide:log-out"
+          @click="signOut({ redirect: true, callbackUrl: '/auth' })"
+        >
+          Sign Out
+        </ui-buttonError>
+      </div>
     </header>
     <ui-layout-divider>Settings</ui-layout-divider>
     <section class="w-full flex gap-5">
@@ -45,6 +62,11 @@
 
 <script lang="ts" setup>
   const { data, signOut } = useAuth();
+  const colorMode = useColorMode();
+
+  const changeTheme = () => {
+    colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light';
+  };
 
   const menu = [
     {
