@@ -1,19 +1,6 @@
-interface UserResponse {
-  data: {
-    accountMe: {
-      email: {
-        is_confirmed: boolean;
-        value: string;
-      };
-      first_name: string;
-      id: string;
-      last_name: string;
-      username: string;
-    };
-  };
-}
+import type { ClientDefault, GQLResponse } from '#gql/types';
 
-const userQuery = `
+const query = `
   query AccountMe {
     accountMe {
       biography
@@ -70,15 +57,18 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const userResponse = await $fetch<UserResponse>(config.public.apiOrigin, {
-    body: {
-      query: userQuery,
-    },
-    headers: {
-      authorization: authHeaderValue,
-    },
-    method: 'POST',
-  }).catch(() => null);
+  const userResponse = await $fetch<GQLResponse<'accountMe', ClientDefault.AuthUserObject>>(
+    config.public.apiOrigin,
+    {
+      body: {
+        query,
+      },
+      headers: {
+        authorization: authHeaderValue,
+      },
+      method: 'POST',
+    }
+  ).catch(() => null);
 
   if (!userResponse?.data) {
     throw createError({

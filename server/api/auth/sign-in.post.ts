@@ -1,11 +1,13 @@
-interface SignInResponse {
-  data?: {
-    signIn: {
-      access_token: string;
-      refresh_token: string;
-    };
-  };
-}
+import type { ClientDefault, GQLResponse } from '#gql/types';
+
+const query = `
+  mutation SignIn($input: AuthSignInInput!) {
+    signIn(input: $input) {
+      access_token
+      refresh_token
+    }
+  }
+`;
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -18,27 +20,21 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const authQuery = `
-  mutation SignIn($input: AuthSignInInput!) {
-    signIn(input: $input) {
-      access_token
-      refresh_token
-    }
-  }
-`;
-
-  const authResponse = await $fetch<SignInResponse>(config.public.apiOrigin, {
-    body: {
-      query: authQuery,
-      variables: {
-        input: {
-          password: credentials?.password,
-          username: credentials?.username,
+  const authResponse = await $fetch<GQLResponse<'signIn', ClientDefault.AuthSignInObject>>(
+    config.public.apiOrigin,
+    {
+      body: {
+        query,
+        variables: {
+          input: {
+            password: credentials?.password,
+            username: credentials?.username,
+          },
         },
       },
-    },
-    method: 'POST',
-  }).catch(() => null);
+      method: 'POST',
+    }
+  ).catch(() => null);
 
   if (!authResponse?.data) {
     throw createError({

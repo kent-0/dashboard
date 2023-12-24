@@ -1,13 +1,6 @@
-interface RefreshSessionResponse {
-  data: {
-    refreshSession: {
-      access_token: string;
-      refresh_token: string;
-    };
-  };
-}
+import type { ClientDefault, GQLResponse } from '#gql/types';
 
-const signOutQuery = `
+const query = `
   mutation RefreshSession($refreshToken: String!) {
     refreshSession(refresh_token: $refreshToken) {
       access_token
@@ -27,9 +20,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const refreshTokenResponse = await $fetch<RefreshSessionResponse>(config.public.apiOrigin, {
+  const refreshTokenResponse = await $fetch<
+    GQLResponse<'refreshSession', ClientDefault.AuthSignInObject>
+  >(config.public.apiOrigin, {
     body: {
-      query: signOutQuery,
+      query,
       variables: {
         refreshToken: body.refreshToken,
       },

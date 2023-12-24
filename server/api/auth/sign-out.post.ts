@@ -1,10 +1,6 @@
-interface SignOutResponse {
-  data: {
-    logOut: string;
-  };
-}
+import type { GQLResponse } from '#gql/types';
 
-const signOutQuery = `
+const query = `
   mutation Mutation {
     logOut
   }    
@@ -21,9 +17,9 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const signOutResponse = await $fetch<SignOutResponse>(config.public.apiOrigin, {
+  const signOutResponse = await $fetch<GQLResponse<'logOut', string>>(config.public.apiOrigin, {
     body: {
-      query: signOutQuery,
+      query,
     },
     headers: {
       authorization: authHeaderValue,

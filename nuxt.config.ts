@@ -97,6 +97,7 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     '@sidebase/nuxt-auth',
     '@nuxtjs/apollo',
+    '@/modules/graphql/module',
   ],
   runtimeConfig: {
     auth: {

@@ -1,23 +1,6 @@
-interface SignUpResponse {
-  data: {
-    signUp: {
-      biography: string;
-      email: {
-        is_confirmed: boolean;
-        value: string;
-      };
-      first_name: string;
-      id: string;
-      last_name: string;
-      projects: Array<{
-        id: string;
-      }>;
-      username: string;
-    };
-  };
-}
+import type { ClientDefault, GQLResponse } from '#gql/types';
 
-const signUpQuery = `
+const query = `
   mutation SignUp($input: AuthSignUpInput!) {
     signUp(input: $input) {
       biography
@@ -40,15 +23,18 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const body = await readBody(event);
 
-  const signUpResponse = await $fetch<SignUpResponse>(config.public.apiOrigin, {
-    body: {
-      query: signUpQuery,
-      variables: {
-        input: body,
+  const signUpResponse = await $fetch<GQLResponse<'signUp', ClientDefault.AuthUserMinimalObject>>(
+    config.public.apiOrigin,
+    {
+      body: {
+        query,
+        variables: {
+          input: body,
+        },
       },
-    },
-    method: 'POST',
-  }).catch(() => null);
+      method: 'POST',
+    }
+  ).catch(() => null);
 
   if (!signUpResponse?.data) {
     throw createError({
