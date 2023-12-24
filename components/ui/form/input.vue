@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col space-y-1">
+  <div class="flex flex-col space-y-1" :class="$attrs.class">
     <div
       class="flex items-center justify-between gap-2 rounded-md bg-components-element dark:bg-components-elementDark"
       :class="{

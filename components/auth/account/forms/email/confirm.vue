@@ -1,6 +1,6 @@
 <template>
   <form
-    class="h-fit w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
+    class="w-full rounded-md bg-components-card p-5 space-y-3 dark:bg-components-cardDark"
     @submit.prevent="submit"
   >
     <ui-layout-divider direction="left">
@@ -38,7 +38,11 @@
       v-show="data?.email.is_confirmed"
       class="h-full w-full flex flex flex-col items-center justify-center text-center space-y-3"
     >
-      <Icon name="lucide:check-check" class="text-5xl" />
+      <div
+        class="dark:bg-brand-30 flex items-center justify-center rounded-md bg-brand/30 p-2 text-brand dark:text-brand"
+      >
+        <Icon name="lucide:check-check" class="text-2xl" />
+      </div>
       <p>Your email address has been confirmed. You can now use all the features.</p>
     </div>
   </form>

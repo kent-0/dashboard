@@ -39,6 +39,16 @@
         autocomplete="username"
         prefix="personal"
       />
+      <ui-form-input
+        class="col-span-3"
+        type="text"
+        label="Biography"
+        name="biography"
+        icon-left="lucide:pen-line"
+        :placeholder="data?.biography ?? 'I not have a biography yet. 😢'"
+        autocomplete="off"
+        prefix="personal"
+      />
     </div>
     <ui-layout-divider />
     <div class="flex justify-end">
@@ -72,12 +82,14 @@
 
   const form = useForm({
     initialValues: {
+      biography: data.value?.biography,
       first_name: data.value?.first_name,
       last_name: data.value?.last_name,
       username: data.value?.username,
     },
     validationSchema: toTypedSchema(
       yup.object({
+        biography: yup.string().label('Biography').max(300).nullable(),
         first_name: yup.string().required().label('First name').min(3).max(30),
         last_name: yup.string().required().label('Last name').min(3).max(30),
         username: yup
@@ -95,7 +107,7 @@
     await mutation
       .mutate({
         input: {
-          biography: '',
+          biography: form.values.biography,
           first_name: form.values.first_name,
           last_name: form.values.last_name,
           username: form.values.username,

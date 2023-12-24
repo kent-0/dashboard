@@ -5,7 +5,7 @@
     >
       <div class="flex flex-col space-y-2">
         <h1 class="text-4xl font-bold font-title">My account</h1>
-        <p class="text-xl">Welcome, {{ data?.first_name }} {{ data?.last_name }}</p>
+        <p class="text-xl">{{ data?.first_name }} {{ data?.last_name }}</p>
       </div>
       <ui-buttonError
         variant="soft"
