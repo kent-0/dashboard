@@ -61,8 +61,13 @@
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
 
+  import type { ClientDefault } from '#gql/types';
+
   const notifications = useNotification();
-  const mutation = useMutation(UpdateUserMutation);
+  const mutation = useMutation<
+    ClientDefault.AuthUserObject,
+    ClientDefault.MutationAccountUpdateArgs
+  >(UpdateUserMutation);
   const { data, getSession } = useAuth();
 
   const form = useForm({
@@ -87,7 +92,16 @@
   });
 
   const submit = async () => {
-    await mutation.mutate({ input: form.values }).catch(() => null);
+    await mutation
+      .mutate({
+        input: {
+          biography: '',
+          first_name: form.values.first_name,
+          last_name: form.values.last_name,
+          username: form.values.username,
+        },
+      })
+      .catch(() => null);
 
     if (mutation.error.value) {
       return notifications.addNotification({

@@ -49,9 +49,14 @@
   import { toTypedSchema } from '@vee-validate/yup';
   import { object, string } from 'yup';
 
+  import type { ClientDefault } from '#gql/types';
+
   const notifications = useNotification();
-  const mutation = useMutation(ConfirmEmailMutation);
   const { data, getSession } = useAuth();
+  const mutation = useMutation<
+    ClientDefault.AuthUserEmailObject,
+    ClientDefault.MutationConfirmEmailArgs
+  >(ConfirmEmailMutation);
 
   const form = useForm({
     initialValues: {
@@ -66,7 +71,7 @@
 
   const submit = async () => {
     await mutation
-      .mutate({ input: { ...form.values, email: data.value?.email.value } })
+      .mutate({ input: { code: form.values.code!, email: data.value!.email.value } })
       .catch(() => null);
 
     if (mutation.error.value) {

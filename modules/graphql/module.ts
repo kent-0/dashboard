@@ -19,9 +19,8 @@ export default defineNuxtModule({
         generates: {
           'gql.ts': {
             config: {
-              avoidOptionals: true,
+              avoidOptionals: false,
               documentMode: 'graphql-tag',
-              enumsAsTypes: true,
               immutableTypes: true,
               maybeValue: 'T | null',
               useTypeImports: true,
