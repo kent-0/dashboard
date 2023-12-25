@@ -10,7 +10,7 @@ export default defineNuxtModule({
   },
   async setup(_, nuxt) {
     // eslint-disable-next-line no-console
-    console.log('[gql-types]: Generating graphql schema for [default] client...');
+    console.log('[gql-types]: Generating graphql schema...');
 
     const { resolve } = createResolver(import.meta.url);
 
@@ -31,10 +31,10 @@ export default defineNuxtModule({
         },
         ignoreNoDocuments: true,
         schema: process.env.NUXT_PUBLIC_API_ORIGIN,
+        silent: true,
       };
 
       const schemaGenerated = await generate(config, false);
-
       let gqlTypes = '';
 
       addTypeTemplate({
@@ -79,10 +79,10 @@ export default defineNuxtModule({
       nuxt.options.alias['#gql/types'] = resolve(nuxt.options.buildDir, 'types/gql-types');
 
       // eslint-disable-next-line no-console
-      console.log('[gql/types]: Successfully generated graphql schema for [default] client');
+      console.log('[gql/types]: Successfully generated graphql schema');
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('[gql/types]: Failed to generate graphql schema for [default] client');
+      console.error('[gql/types]: Failed to generate graphql schema');
     }
   },
 });
