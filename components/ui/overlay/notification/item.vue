@@ -22,7 +22,15 @@
       }"
     >
       <div class="flex justify-between space-x-1">
-        <span class="line-clamp-2">{{ title }}</span>
+        <span
+          class="line-clamp-2"
+          :class="{
+            'text-error dark:text-error-dark': type === 'error',
+            'text-warning dark:text-warning-dark': type === 'warning',
+            'text-success dark:text-success-dark': type === 'success',
+          }"
+          >{{ title }}</span
+        >
         <div
           class="flex cursor-pointer items-center justify-center p-1 opacity-70 transition duration-300 hover:(opacity-100)"
           @click="removeNotification"
@@ -59,8 +67,7 @@
       }
     >(),
     {
-      // @ts-expect-error: This is a default value
-      actions: [],
+      actions: () => [],
       message: undefined,
       type: 'info',
     }

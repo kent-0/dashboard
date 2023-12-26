@@ -1,10 +1,13 @@
 <template>
   <picture
-    class="flex-shrink-0 cursor-pointer select-none rounded-full bg-components-element transition duration-300 dark:bg-components-elementDark"
+    class="flex-shrink-0 cursor-pointer select-none rounded-full bg-components-element dark:bg-components-elementDark"
   >
     <div
       v-show="!imageLoaded || isimageError || !src"
-      :class="['h-full w-full flex items-center justify-center', $attrs.class]"
+      :class="[
+        'flex items-center justify-center rounded-full transition duration-300 flex-shrink-0',
+        $attrs.class,
+      ]"
     >
       <span>
         {{
@@ -18,7 +21,7 @@
     <nuxt-img
       v-if="src"
       v-show="!isimageError && imageLoaded"
-      :class="['rounded-full flex-shrink-0', $attrs.class]"
+      :class="['rounded-full flex-shrink-0 transition duration-300', $attrs.class]"
       :src="src"
       @load="imageLoadedSuccessfully"
       @error="imageFailedToLoad"
@@ -27,6 +30,10 @@
 </template>
 
 <script setup lang="ts">
+  defineOptions({
+    inheritAttrs: false,
+  });
+
   const isimageError = ref(false);
   const imageLoaded = ref(false);
 
