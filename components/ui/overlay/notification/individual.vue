@@ -34,7 +34,7 @@
           :aria-label="action.label"
           :icon-left="action.iconLeft"
           :icon-right="action.iconRight"
-          @click="action.onClick"
+          @click="() => action.onClick?.()"
         >
           {{ action.label }}
         </ui-button>

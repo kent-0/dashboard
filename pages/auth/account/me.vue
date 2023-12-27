@@ -28,37 +28,71 @@
         and cant be changed at any time. This email address is also used to send you notifications
         and newsletters.
       </p>
-      <ui-overlay-notification-individual
-        v-if="!data?.email.is_confirmed"
-        title="Confirm email"
-        message="Please confirm your email address to use all your account features."
-        type="warning"
-        :actions="[
-          {
-            label: 'Confirm',
-            iconLeft: 'lucide:check',
-            variant: 'solid',
-            onClick: () => {},
-          },
-        ]"
-      />
-      <ui-overlay-notification-individual
-        v-if="data?.email.is_confirmed"
-        title="Email confirmed"
-        message="Now you can use all your account features."
-        type="success"
-      />
+      <client-only>
+        <ui-overlay-notification-individual
+          v-if="!data?.email.is_confirmed"
+          title="Confirm email"
+          message="Please confirm your email address to use all your account features."
+          type="warning"
+          :actions="[
+            {
+              label: 'Confirm',
+              iconLeft: 'lucide:check',
+              variant: 'solid',
+              onClick: () => modal.open(),
+            },
+          ]"
+        />
+        <ui-overlay-notification-individual
+          v-if="data?.email.is_confirmed"
+          title="Email confirmed"
+          message="Now you can use all your account features."
+          type="success"
+        />
+      </client-only>
       <p
         class="rounded-mg rounded-md bg-components-element p-3 text-center dark:bg-components-elementDark"
       >
         {{ data?.email.value }}
       </p>
     </div>
+    <ui-overlay-modal class="w-full lg:w-sm" title="Confirm email account" :disclosure="modal">
+      <template #content>
+        <form class="flex flex-col space-y-3">
+          <p>
+            We have sent you a confirmation code to your email address. Please enter it below to
+            confirm your email account.
+          </p>
+          <ui-form-input
+            type="text"
+            label="Confirmation code"
+            name="code"
+            prefix="confirm_email"
+            placeholder="000000000"
+          />
+          <ui-button
+            label="Confirm"
+            variant="solid"
+            class="w-full"
+            type="submit"
+            aria-label="Confirm email account"
+          >
+            Confirm
+          </ui-button>
+        </form>
+      </template>
+      <template #footer>
+        <small class="opacity-50">
+          By clicking on the button below, you accept our Terms of Service and Privacy Policy.
+        </small>
+      </template>
+    </ui-overlay-modal>
   </main>
 </template>
 
 <script lang="ts" setup>
   const { data } = useAuth();
+  const modal = useModal();
 
   useHead({
     meta: [

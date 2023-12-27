@@ -17,7 +17,7 @@
       >
         <Icon :name="iconLeft" />
       </div>
-      <div class="relative h-full w-full flex items-end py-2">
+      <div class="relative h-full w-full flex items-end py-2" :class="{ 'pl-4': !iconLeft }">
         <label
           class="absolute transition-all duration-300"
           :class="{
