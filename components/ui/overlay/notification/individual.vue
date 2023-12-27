@@ -10,10 +10,10 @@
         'text-success dark:text-success-dark': type === 'success',
       }"
     >
-      <icon v-show="type === 'info' || !type" name="lucide:info" />
-      <icon v-show="type === 'success'" name="lucide:check" />
-      <icon v-show="type === 'warning'" name="lucide:alert-triangle" />
-      <icon v-show="type === 'error'" name="lucide:x-circle" />
+      <icon v-if="type === 'info' || !type" name="lucide:info" />
+      <icon v-if="type === 'success'" name="lucide:check" />
+      <icon v-if="type === 'warning'" name="lucide:alert-triangle" />
+      <icon v-if="type === 'error'" name="lucide:x-circle" />
     </div>
     <div
       class="w-full flex flex-col"
@@ -22,10 +22,10 @@
       }"
     >
       <div class="flex flex-col">
-        <span class="line-clamp-2">{{ title }}</span>
-        <small v-show="!!message" class="line-clamp-10 opacity-50">{{ message }}</small>
+        <span class="line-clamp-2 font-semibold">{{ title }}</span>
+        <small v-if="!!message" class="line-clamp-10 opacity-50">{{ message }}</small>
       </div>
-      <div v-show="actions.length > 0" class="flex flex-wrap gap-2">
+      <div v-if="actions.length > 0" class="flex flex-wrap gap-2">
         <ui-button
           v-for="action in actions"
           :key="action.label"

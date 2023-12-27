@@ -72,7 +72,7 @@
   import UpdateUserMutation from '~/graphql/mutations/user/update.gql';
 
   import { toTypedSchema } from '@vee-validate/yup';
-  import * as yup from 'yup';
+  import { object, string } from 'yup';
 
   import type { ClientDefault } from '#gql/types';
 
@@ -91,12 +91,11 @@
       username: data.value?.username,
     },
     validationSchema: toTypedSchema(
-      yup.object({
-        biography: yup.string().label('Biography').max(300).nullable(),
-        first_name: yup.string().required().label('First name').min(3).max(30),
-        last_name: yup.string().required().label('Last name').min(3).max(30),
-        username: yup
-          .string()
+      object({
+        biography: string().label('Biography').max(300).nullable(),
+        first_name: string().required().label('First name').min(3).max(30),
+        last_name: string().required().label('Last name').min(3).max(30),
+        username: string()
           .required()
           .min(3)
           .max(20)
