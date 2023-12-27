@@ -1,10 +1,19 @@
 <template>
-  <div class="flex flex-col space-y-1" :class="$attrs.class">
+  <div
+    class="flex"
+    :class="[
+      $attrs.class,
+      {
+        'flex-col space-y-1': direction === 'vertical' || !direction,
+        'flex-row items-center space-x-4': direction === 'horizontal',
+      },
+    ]"
+  >
     <label :for="`_${$props.prefix}_input_${name}_`">
       {{ label }} <span v-show="required" class="text-error dark:text-error-dark">*</span>
     </label>
     <div
-      class="flex border-2 rounded-md py-2 transition hover:(bg-components-background/20 dark:bg-components-backgroundDark/20) focus:ring-0"
+      class="w-full flex border-2 rounded-md py-2 transition hover:(bg-components-background/20 dark:bg-components-backgroundDark/20) focus:ring-0"
       :class="{
         'focus:border-components-element border-components-element dark:border-components-elementDark focus:dark:border-components-elementDark':
           !hasError && !hasWarning && !errorMessage,
@@ -117,6 +126,7 @@
       | 'off'
       | 'on'
       | 'username';
+    direction?: 'horizontal' | 'vertical';
     disabled?: boolean;
     hasError?: boolean;
     hasWarning?: boolean;
