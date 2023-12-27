@@ -1,70 +1,71 @@
 <template>
   <div class="flex flex-col space-y-1" :class="$attrs.class">
+    <label :for="`_${$props.prefix}_input_${name}_`">
+      {{ label }} <span v-show="required" class="text-error dark:text-error-dark">*</span>
+    </label>
     <div
-      class="flex items-center justify-between gap-2 rounded-md bg-components-element dark:bg-components-elementDark"
+      class="flex border-2 rounded-md py-2 transition hover:(bg-components-background/20 dark:bg-components-backgroundDark/20) focus:ring-0"
       :class="{
-        'py-2': type !== 'password' && !iconLeft && !iconRight,
+        'focus:border-components-element border-components-element dark:border-components-elementDark focus:dark:border-components-elementDark':
+          !hasError && !hasWarning && !errorMessage,
+        'focus:(border-error dark:border-error-dark) border-error dark:border-error-dark':
+          errorMessage || hasError,
+        'focus:(border-warning dark:border-warning-dark) border-warning dark:border-warning-dark':
+          hasWarning,
       }"
     >
       <div
         v-if="iconLeft"
-        class="flex items-center justify-center border-r-2 border-r-components-card p-5 transition duration-300 dark:border-r-components-cardDark"
+        class="w-10 flex items-center justify-center"
         :class="{
           'text-error dark:text-error-dark': hasError || errorMessage,
           'text-warning dark:text-warning-dark': hasWarning && !hasError,
-          'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
         }"
       >
         <Icon :name="iconLeft" />
       </div>
-      <div class="relative h-full w-full flex items-end py-2" :class="{ 'pl-4': !iconLeft }">
-        <label
-          class="absolute transition-all duration-300"
-          :class="{
-            'top-3 text-xs': isFocused || value,
-            'top-4': !isFocused && !value,
-            'text-error dark:text-error-dark': hasError || errorMessage,
-            'text-warning dark:text-warning-dark': hasWarning && !hasError,
-            'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
-            'opacity-50': !errorMessage && !hasError && !hasWarning && !isFocused,
-          }"
-          :for="`_${$props.prefix}_input_${name}_`"
-        >
-          {{ label }}
-        </label>
-        <input
-          :id="`_${$props.prefix}_input_${name}_`"
-          v-bind="{ ...$attrs, class: undefined }"
-          v-model="value"
-          :type="isShowPassword ? 'text' : type || 'text'"
-          :disabled="disabled"
-          :label="label"
-          :placeholder="placeholder"
-          :name="name"
-          :readonly="readonly"
-          class="w-full border-none bg-transparent p-0 outline-none placeholder:opacity-0 focus:ring-0 focus:placeholder:opacity-100"
-          @focus="isFocused = true"
-          @blur="
-            isFocused = false;
-            handleBlur($event, true);
-          "
-          @change="handleChange($event, !!errorMessage)"
-        />
-      </div>
+      <input
+        :id="`_${$props.prefix}_input_${name}_`"
+        v-bind="{ ...$attrs, class: undefined }"
+        v-model="value"
+        class="w-full rounded-md border-none bg-transparent p-0 outline-none focus:ring-0"
+        :class="{
+          'px-2': !iconLeft && !iconRight,
+          'pl-2': !iconLeft,
+          'pr-2': !iconRight,
+        }"
+        :type="isShowPassword ? 'text' : type || 'text'"
+        :disabled="disabled"
+        :label="label"
+        :aria-invalid="!!errorMessage || hasError"
+        :placeholder="placeholder"
+        :name="name"
+        :readonly="$props.readonly"
+        :required="required"
+        @focus="isFocused = true"
+        @blur="
+          isFocused = false;
+          handleBlur($event, true);
+        "
+        @change="handleChange($event, !!errorMessage)"
+      />
       <div
         v-if="iconRight && type !== 'password'"
-        class="flex items-center justify-center border-l-2 border-l-components-card p-5 dark:border-l-components-cardDark"
+        class="w-10 flex items-center justify-center"
         :class="{
           'text-error dark:text-error-dark': hasError || errorMessage,
           'text-warning dark:text-warning-dark': hasWarning && !hasError,
-          'text-brand dark:text-brand-dark': isFocused && !hasError && !hasWarning,
         }"
       >
         <Icon :name="iconRight" />
       </div>
       <div
-        v-if="type === 'password'"
-        class="flex items-center justify-center border-l-2 border-l-components-card p-5 dark:border-l-components-cardDark"
+        v-if="!iconRight && type === 'password'"
+        class="w-10 flex items-center justify-center"
+        :class="{
+          'text-error dark:text-error-dark': hasError || errorMessage,
+          'text-warning dark:text-warning-dark': hasWarning && !hasError,
+        }"
         @click="isShowPassword = !isShowPassword"
       >
         <Icon :name="isShowPassword ? 'lucide:eye-off' : 'lucide:eye'" />
@@ -127,6 +128,7 @@
     placeholder?: string;
     prefix: string;
     readonly?: boolean;
+    required?: boolean;
     type: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
   }>();
 

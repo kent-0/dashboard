@@ -69,6 +69,8 @@
             name="code"
             prefix="confirm_email"
             placeholder="000000000"
+            icon-left="lucide:blocks"
+            :required="true"
           />
           <ui-button
             label="Confirm"

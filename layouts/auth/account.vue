@@ -1,7 +1,7 @@
 <template>
   <main class="mx-auto max-w-2xl flex flex-col p-5 space-y-5">
     <header
-      class="h-52 flex flex-col items-center justify-center p-5 text-center bg-hero-graph-paper-components-card space-y-5 dark:bg-hero-graph-paper-components-cardDark"
+      class="h-52 flex flex-col items-center justify-center p-5 text-center bg-hero-graph-paper-dark/5 space-y-5 dark:bg-hero-graph-paper-components-cardDark"
     >
       <div class="flex flex-col">
         <h1 class="text-4xl font-title">{{ data?.first_name }} {{ data?.last_name }}</h1>

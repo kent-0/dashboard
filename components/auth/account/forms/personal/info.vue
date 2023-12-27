@@ -20,6 +20,7 @@
         :placeholder="data?.first_name"
         autocomplete="given-name"
         prefix="personal"
+        :required="true"
       />
       <ui-form-input
         type="text"
@@ -29,6 +30,7 @@
         :placeholder="data?.last_name"
         autocomplete="family-name"
         prefix="personal"
+        :required="true"
       />
       <ui-form-input
         type="text"
@@ -38,6 +40,7 @@
         :placeholder="data?.username"
         autocomplete="username"
         prefix="personal"
+        :required="true"
       />
       <ui-form-input
         class="col-span-3"
