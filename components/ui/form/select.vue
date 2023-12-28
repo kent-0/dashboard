@@ -1,5 +1,11 @@
 <template>
-  <div class="relative">
+  <div
+    class="relative"
+    role="combobox"
+    :aria-expanded="isOpen"
+    aria-label="Dropdown"
+    aria-owns="dropdown-listbox"
+  >
     <div
       ref="select"
       class="w-full flex cursor-pointer select-none items-center rounded-md p-3"
@@ -9,6 +15,7 @@
         'hover:(bg-components-element/50 dark:bg-components-elementDark/50)':
           variant === 'soft' && hoverTransition && !isOpen,
       }"
+      tabindex="0"
       @click="isOpen = !isOpen"
     >
       <div class="w-full flex items-center space-x-1">
@@ -33,6 +40,8 @@
     >
       <ul
         v-if="isOpen"
+        aria-labelledby="dropdownLabel"
+        role="listbox"
         class="z-full absolute top-14 z-10 w-fit flex flex-col gap-1 rounded-md p-1 shadow-md"
         :class="{
           'bg-components-background/20 dark:bg-components-backgroundDark/40': variant === 'light',
@@ -42,6 +51,7 @@
         <li
           v-for="option in options"
           :key="`${option.label}-${option.value}`"
+          role="option"
           class="cursor-pointer select-none rounded-sm px-2 py-1 hover:(bg-components-card/50 dark:bg-components-cardDark/50)"
           :class="{
             'bg-components-card/50 dark:bg-components-cardDark/50 font-medium text-brand dark:text-brand-dark':

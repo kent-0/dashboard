@@ -8,6 +8,7 @@
       v-for="item in items"
       :key="item.href"
       role="tab"
+      :aria-selected="item.href === $route.path"
       class="flex items-center gap-2 p-2 transition duration-300 hover:opacity-70"
       :href="item.href"
       active-class="bg-components-card dark:bg-components-cardDark rounded-md text-brand dark:text-brand-dark"
