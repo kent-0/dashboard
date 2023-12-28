@@ -4,7 +4,9 @@
       class="h-52 flex flex-col items-center justify-center p-5 text-center bg-hero-graph-paper-components-element space-y-5 dark:bg-hero-graph-paper-components-cardDark"
     >
       <div class="flex flex-col">
-        <h1 class="text-4xl font-title">{{ data?.first_name }} {{ data?.last_name }}</h1>
+        <h1 class="text-3xl font-title md:text-4xl">
+          {{ data?.first_name }} {{ data?.last_name }}
+        </h1>
         <p class="opacity-50">Setup your account and manage your personal information.</p>
       </div>
       <UiButtonError

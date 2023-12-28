@@ -4,7 +4,7 @@
       <ui-layout-divider direction="left">
         <h2 class="text-lg font-semibold">Avatar</h2>
       </ui-layout-divider>
-      <div class="flex items-center justify-between gap-5">
+      <div class="flex flex-col items-center justify-between gap-5 md:flex-row">
         <p class="max-w-md opacity-50">
           Your avatar is used to identify you across the platform and is visible to other users. To
           change your avatar, click on it and select a new one. The image file size must be less

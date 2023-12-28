@@ -1,9 +1,12 @@
 html[class*='light'] {
-  color-scheme: light;
-  --at-apply: bg-components-background text-black;
+  @apply bg-components-background text-black;
 }
 
 html[class*='dark'] {
   color-scheme: dark;
-  --at-apply: bg-components-backgroundDark text-white;
+  @apply bg-components-backgroundDark text-white;
+}
+
+::selection {
+  @apply bg-brand dark:bg-brand-dark;
 }

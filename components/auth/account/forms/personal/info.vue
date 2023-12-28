@@ -11,7 +11,7 @@
       users and can be changed at any time. Remember respect the rules of the platform and do not
       use offensive words.
     </p>
-    <div class="grid grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 gap-5 lg:grid-cols-3 md:grid-cols-2">
       <ui-form-input
         type="text"
         label="First name"
@@ -43,7 +43,7 @@
         :required="true"
       />
       <ui-form-input
-        class="col-span-3"
+        class="lg:col-span-3"
         type="text"
         label="Biography"
         name="biography"
@@ -54,8 +54,9 @@
       />
     </div>
     <ui-layout-divider />
-    <div class="flex justify-end">
+    <div class="w-full flex justify-end">
       <ui-button
+        class="w-full md:w-fit"
         icon-left="lucide:save-all"
         variant="solid"
         aria-label="Save the new user info"
