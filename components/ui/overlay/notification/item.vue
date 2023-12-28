@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-fit max-w-sm w-full flex items-center rounded-lg bg-components-element p-5 space-x-5 dark:bg-components-elementDark"
+    class="h-fit w-full flex items-center rounded-lg bg-components-element p-5 sm:max-w-sm space-x-5 dark:bg-components-elementDark"
   >
     <div
       class="flex items-center justify-center text-2xl"
@@ -15,21 +15,8 @@
       <icon v-if="type === 'warning'" name="lucide:alert-triangle" />
       <icon v-if="type === 'error'" name="lucide:x-circle" />
     </div>
-    <div
-      class="w-full flex flex-col"
-      :class="{
-        'gap-2': !!message || actions.length > 0,
-      }"
-    >
-      <div class="flex justify-between space-x-1">
-        <span class="line-clamp-2 font-semibold">{{ title }}</span>
-        <div
-          class="flex cursor-pointer items-center justify-center p-1 opacity-70 transition duration-300 hover:(opacity-100)"
-          @click="removeNotification"
-        >
-          <icon name="lucide:x" />
-        </div>
-      </div>
+    <div class="w-full flex flex-col">
+      <span class="line-clamp-2 font-semibold">{{ title }}</span>
       <p v-if="!!message" class="line-clamp-10 text-sm">{{ message }}</p>
       <div v-if="actions.length > 0" class="flex flex-wrap gap-2">
         <ui-button
@@ -45,6 +32,12 @@
           {{ action.label }}
         </ui-button>
       </div>
+    </div>
+    <div
+      class="flex cursor-pointer items-center self-start justify-center p-1 opacity-70 transition duration-300 hover:(opacity-100)"
+      @click="removeNotification"
+    >
+      <icon name="lucide:x" />
     </div>
   </div>
 </template>
