@@ -14,7 +14,7 @@
         aria-label="Close the current user session"
         @click="signOut({ callbackUrl: '/auth', redirect: true })"
       >
-        Sign Out
+        Sign Out {{ selectedValue }}
       </UiButtonError>
     </header>
     <nav>
@@ -28,6 +28,8 @@
 
 <script lang="ts" setup>
   const { data, signOut } = useAuth();
+
+  const selectedValue = ref(true);
 
   const tabs = [
     {
