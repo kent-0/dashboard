@@ -17,6 +17,9 @@
         Sign Out
       </UiButtonError>
     </header>
+    <nav>
+      <ui-layout-tab :items="tabs" />
+    </nav>
     <article>
       <slot />
     </article>
@@ -25,4 +28,42 @@
 
 <script lang="ts" setup>
   const { data, signOut } = useAuth();
+
+  const tabs = [
+    {
+      href: '/auth/account',
+      icon: 'lucide:user',
+      label: 'Personal',
+    },
+    {
+      href: '/auth/account/security',
+      icon: 'lucide:shield-check',
+      label: 'Security',
+    },
+    {
+      href: '/auth/account/sessions',
+      icon: 'lucide:history',
+      label: 'Sessions',
+    },
+    {
+      href: '/auth/account/apparence',
+      icon: 'lucide:palette',
+      label: 'Apparence',
+    },
+    {
+      href: '/auth/account/apparence',
+      icon: 'lucide:palette',
+      label: 'Apparence',
+    },
+    {
+      href: '/auth/account/apparence',
+      icon: 'lucide:palette',
+      label: 'Apparence',
+    },
+    {
+      href: '/auth/account/apparence',
+      icon: 'lucide:palette',
+      label: 'Apparence',
+    },
+  ];
 </script>
