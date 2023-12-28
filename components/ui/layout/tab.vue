@@ -2,14 +2,15 @@
   <div
     ref="tabContainer"
     role="tablist"
-    class="w-full flex items-center gap-1 overflow-x-auto rounded-lg bg-components-element p-1 dark:bg-components-elementDark"
+    class="w-full flex items-center gap-1 overflow-x-auto scroll-smooth rounded-lg bg-components-element p-1 dark:bg-components-elementDark"
   >
     <nuxt-link
       v-for="item in items"
       :key="item.href"
+      role="tab"
       class="flex items-center gap-2 p-2 transition duration-300 hover:opacity-70"
       :href="item.href"
-      active-class="bg-components-card dark:bg-components-cardDark rounded-md"
+      active-class="bg-components-card dark:bg-components-cardDark rounded-md text-brand dark:text-brand-dark"
     >
       <icon :name="item.icon" />
       <span>{{ item.label }}</span>

@@ -2,18 +2,19 @@
   <div class="relative">
     <div
       ref="select"
-      class="w-full flex cursor-pointer select-none items-center gap-2 rounded-md p-3 space-x-2"
+      class="w-full flex cursor-pointer select-none items-center rounded-md p-3"
       :class="{
         'bg-components-background/20 dark:bg-components-backgroundDark/40': variant === 'light',
-        'bg-components-element dark:bg-components-elementDark hover:(bg-components-element/50 dark:bg-components-elementDark/50)':
-          variant === 'soft' || !variant,
+        'bg-components-element dark:bg-components-elementDark': variant === 'soft' || !variant,
+        'hover:(bg-components-element/50 dark:bg-components-elementDark/50)':
+          variant === 'soft' && hoverTransition && !isOpen,
       }"
       @click="isOpen = !isOpen"
     >
       <div class="w-full flex items-center space-x-1">
-        <icon v-if="selectedOption?.icon" :name="selectedOption.icon" />
+        <icon v-if="!customLabel && selectedOption?.icon" :name="selectedOption.icon" />
         <input
-          type="search"
+          type="text"
           readonly
           class="w-full cursor-pointer border-none bg-transparent p-0 focus:ring-0"
           placeholder="Select an option"
@@ -32,7 +33,7 @@
     >
       <ul
         v-if="isOpen"
-        class="z-full absolute top-14 z-10 w-full flex flex-col gap-1 rounded-md p-1 shadow-md"
+        class="z-full absolute top-14 z-10 w-fit flex flex-col gap-1 rounded-md p-1 shadow-md"
         :class="{
           'bg-components-background/20 dark:bg-components-backgroundDark/40': variant === 'light',
           'bg-components-element dark:bg-components-elementDark': variant === 'soft' || !variant,
@@ -41,22 +42,24 @@
         <li
           v-for="option in options"
           :key="`${option.label}-${option.value}`"
-          class="rounded-sm px-2 py-1 hover:(bg-components-card/50 dark:bg-components-cardDark/50)"
+          class="cursor-pointer select-none rounded-sm px-2 py-1 hover:(bg-components-card/50 dark:bg-components-cardDark/50)"
           :class="{
             'bg-components-card/50 dark:bg-components-cardDark/50 font-medium text-brand dark:text-brand-dark':
               modelValue === option.value,
           }"
           @click="updateValue(option)"
         >
-          <icon
-            v-if="option.icon"
-            :name="option.icon"
-            class="mr-2"
-            :class="{
-              'text-brand dark:text-brand-dark': modelValue === option.value,
-            }"
-          />
-          <span>{{ option.label }}</span>
+          <div class="flex items-center">
+            <icon
+              v-if="option.icon"
+              :name="option.icon"
+              class="mr-2"
+              :class="{
+                'text-brand dark:text-brand-dark': modelValue === option.value,
+              }"
+            />
+            <span>{{ option.label }}</span>
+          </div>
         </li>
       </ul>
     </transition>
@@ -70,6 +73,7 @@
 
   const props = defineProps<{
     customLabel?: string;
+    hoverTransition?: boolean;
     modelValue: boolean | number | string;
     options: Array<{
       icon?: string;
