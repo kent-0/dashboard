@@ -27,6 +27,7 @@
           placeholder="mycoolusernamehere"
           name="username"
           prefix="auth"
+          variant="soft"
         />
         <ui-form-input
           autocomplete="current-password"
