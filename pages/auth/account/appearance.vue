@@ -1,6 +1,6 @@
 <template>
   <nuxt-layout name="auth-account">
-    <h1>Apparence</h1>
+    <h1>Appearance</h1>
   </nuxt-layout>
 </template>
 

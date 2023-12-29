@@ -17,9 +17,7 @@
         Sign Out {{ selectedValue }}
       </UiButtonError>
     </header>
-    <nav>
-      <ui-layout-tab :items="tabs" />
-    </nav>
+    <ui-layout-tab :filled="true" :items="tabs" />
     <article>
       <slot />
     </article>
@@ -48,24 +46,9 @@
       label: 'Sessions',
     },
     {
-      href: '/auth/account/apparence',
+      href: '/auth/account/appearance',
       icon: 'lucide:palette',
-      label: 'Apparence',
-    },
-    {
-      href: '/auth/account/apparence',
-      icon: 'lucide:palette',
-      label: 'Apparence',
-    },
-    {
-      href: '/auth/account/apparence',
-      icon: 'lucide:palette',
-      label: 'Apparence',
-    },
-    {
-      href: '/auth/account/apparence',
-      icon: 'lucide:palette',
-      label: 'Apparence',
+      label: 'Appearance',
     },
   ];
 </script>
