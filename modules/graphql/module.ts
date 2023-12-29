@@ -1,5 +1,5 @@
 import { type CodegenConfig, generate } from '@graphql-codegen/cli';
-import { addTypeTemplate, createResolver, defineNuxtModule } from 'nuxt/kit';
+import { addTypeTemplate, createResolver, defineNuxtModule, useLogger } from 'nuxt/kit';
 
 export default defineNuxtModule({
   meta: {
@@ -9,10 +9,10 @@ export default defineNuxtModule({
     name: 'gql-types',
   },
   async setup(_, nuxt) {
-    // eslint-disable-next-line no-console
-    console.log('[gql-types]: Generating graphql schema...');
-
+    const logger = useLogger('gql-types');
     const { resolve } = createResolver(import.meta.url);
+
+    logger.info('Generating graphql schema...');
 
     try {
       const config: CodegenConfig = {
@@ -78,11 +78,9 @@ export default defineNuxtModule({
 
       nuxt.options.alias['#gql/types'] = resolve(nuxt.options.buildDir, 'types/gql-types');
 
-      // eslint-disable-next-line no-console
-      console.log('[gql/types]: Successfully generated graphql schema');
+      logger.info('Successfully generated graphql schema');
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('[gql/types]: Failed to generate graphql schema');
+      logger.error('Failed to generate graphql schema');
     }
   },
 });
