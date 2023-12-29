@@ -71,6 +71,6 @@
         name: 'description',
       },
     ],
-    title: `My account - ${data.value?.first_name} ${data.value?.last_name}`,
+    title: `My account`,
   });
 </script>
