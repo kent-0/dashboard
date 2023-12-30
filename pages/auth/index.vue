@@ -1,9 +1,9 @@
 <template>
   <div class="w-full flex">
     <div
-      class="min-h-screen w-1/2 bg-[url(/auth/banner-sign-in.png)] bg-cover bg-center bg-no-repeat"
+      class="hidden min-h-screen w-1/2 bg-[url(/auth/banner-sign-in.png)] bg-cover bg-center bg-no-repeat lg:block"
     ></div>
-    <div class="w-1/2 flex flex-col items-center justify-center py-5">
+    <div class="w-full flex flex-col items-center justify-center p-5 lg:(w-1/2 p-0)">
       <form class="max-w-110 flex flex-col space-y-5" @submit.prevent="submit">
         <ui-layout-divider direction="right">Kento</ui-layout-divider>
         <h1 class="text-5xl font-title">Welcome back!</h1>
@@ -144,5 +144,6 @@
       navigateAuthenticatedTo: '/',
       unauthenticatedOnly: true,
     },
+    layout: false,
   });
 </script>
