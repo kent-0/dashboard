@@ -1,7 +1,7 @@
 <template>
   <main>
     <slot />
-    <footer class="mt-3 flex flex-col bg-components-card p-5 dark:bg-components-cardDark">
+    <footer class="flex flex-col bg-components-card p-5 dark:bg-components-cardDark">
       <div class="mx-auto flex flex-col items-center justify-between gap-3 container md:flex-row">
         <div class="flex flex-col items-center gap-2 text-center md:(flex flex-row text-left)">
           <nuxt-img src="/icon.png" class="size-10 rounded-md" />
