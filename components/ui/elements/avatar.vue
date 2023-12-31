@@ -9,14 +9,14 @@
         $attrs.class,
       ]"
     >
-      <span>
+      <small>
         {{
           name
             .split(' ')
             .map((n) => n[0])
             .join('')
         }}
-      </span>
+      </small>
     </div>
     <nuxt-img
       v-if="src"

@@ -138,7 +138,7 @@
     hint?: string;
     iconLeft?: `lucide:${string}`;
     iconRight?: `lucide:${string}`;
-    label: string;
+    label?: string;
     name: string;
     placeholder?: string;
     prefix: string;
