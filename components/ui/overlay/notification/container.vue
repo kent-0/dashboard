@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="notifications.notifications.value.length > 0"
     class="fixed right-0 top-0 z-999 max-h-screen w-full flex flex-col gap-5 overflow-y-hidden p-5 sm:max-w-sm"
   >
     <transition-group

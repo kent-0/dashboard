@@ -4,4 +4,14 @@
   </nuxt-layout>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  useHead({
+    meta: [
+      {
+        content: 'Home page of the dashboard to manage your account and your projects.',
+        name: 'description',
+      },
+    ],
+    title: 'Dashboard',
+  });
+</script>
