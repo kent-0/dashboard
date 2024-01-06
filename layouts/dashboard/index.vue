@@ -17,9 +17,7 @@
       </div>
     </aside>
     <article class="min-h-screen w-[80%]">
-      <header
-        class="flex items-center justify-between gap-2 border-l border-l-components-element bg-components-card p-5 dark:(border-l-components-elementDark bg-components-cardDark)"
-      >
+      <header class="flex items-center justify-between gap-2 p-5">
         <div></div>
         <div class="flex items-center space-x-2">
           <div class="flex items-center space-x-1">
@@ -35,7 +33,7 @@
             />
             <ui-button-icon icon="lucide:bell" variant="ghost" aria-label="Notification center" />
           </div>
-          <ui-layout-popover placement="bottom" class="rounded-full">
+          <ui-layout-popover class="rounded-full">
             <template #trigger>
               <ui-elements-avatar
                 src="https://i.scdn.co/image/ab67616d00001e029d65793a76e1c7702584281d"
@@ -44,14 +42,12 @@
               />
             </template>
             <template #content>
-              <div
-                class="w-full flex flex-col rounded-md bg-components-card p-5 lg:w-80 space-y-2 dark:bg-components-cardDark"
-              >
-                <div class="w-full flex flex-col items-center justify-center text-center space-y-2">
+              <div class="w-full flex flex-col space-y-3">
+                <div class="w-full flex items-center space-x-2">
                   <ui-elements-avatar
                     src="https://i.scdn.co/image/ab67616d00001e029d65793a76e1c7702584281d"
                     :name="`${session?.first_name} ${session?.last_name}`"
-                    class="size-24"
+                    class="size-16"
                   />
                   <div class="flex flex-col">
                     <h2 class="text-lg font-semibold">
@@ -63,6 +59,8 @@
                   </div>
                 </div>
                 <ui-layout-menu-link :items="userMenu" />
+                <ui-layout-divider></ui-layout-divider>
+                <ui-layout-menu :items="userMenuActions" />
               </div>
             </template>
           </ui-layout-popover>
@@ -74,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { data: session } = useAuth();
+  const { data: session, signOut } = useAuth();
 
   const sidebarMainMenu = [
     {
@@ -114,11 +112,6 @@
 
   const userMenu = [
     {
-      icon: 'lucide:bar-chart',
-      title: 'Dashboard',
-      to: '/dashboard',
-    },
-    {
       icon: 'lucide:settings',
       title: 'Account settings',
       to: '/auth/account',
@@ -128,10 +121,14 @@
       title: 'Help',
       to: '/',
     },
+  ];
+
+  const userMenuActions = [
     {
-      icon: 'lucide:sparkle',
-      title: 'Release notes',
-      to: '/',
+      click: () => signOut({ callbackUrl: '/auth', redirect: true }),
+      icon: 'lucide:log-out',
+      title: 'Logout',
+      type: 'danger' as const,
     },
   ];
 </script>
