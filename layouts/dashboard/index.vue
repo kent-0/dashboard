@@ -21,17 +21,16 @@
         <div></div>
         <div class="flex items-center space-x-2">
           <div class="flex items-center space-x-1">
-            <ui-button-icon
-              icon="lucide:help-circle"
-              variant="ghost"
-              aria-label="Notification center"
-            />
-            <ui-button-icon
-              icon="lucide:message-circle"
-              variant="ghost"
-              aria-label="Notification center"
-            />
-            <ui-button-icon icon="lucide:bell" variant="ghost" aria-label="Notification center" />
+            <ui-layout-tooltip title="Chat with your coworkers, project managers and more">
+              <ui-button-icon
+                icon="lucide:message-circle"
+                variant="ghost"
+                aria-label="Notification center"
+              />
+            </ui-layout-tooltip>
+            <ui-layout-tooltip title="Check your current pending messages in the projects">
+              <ui-button-icon icon="lucide:bell" variant="ghost" aria-label="Notification center" />
+            </ui-layout-tooltip>
           </div>
           <ui-layout-popover class="rounded-full">
             <template #trigger>

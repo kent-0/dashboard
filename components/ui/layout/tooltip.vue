@@ -2,11 +2,11 @@
   <div
     ref="reference"
     :class="$attrs.class"
-    role="button"
-    aria-label="Represent an element with popover trigger"
-    @click="toggleOpen"
+    aria-label="Represent an element that has a tooltip"
+    @mouseenter="open = true"
+    @mouseleave="open = false"
   >
-    <slot name="trigger" />
+    <slot />
   </div>
   <transition
     enter-active-class="transition-opacity duration-200 ease-out"
@@ -19,10 +19,11 @@
     <div
       v-show="open && isPositioned"
       ref="floating"
-      class="rounded-md bg-components-card p-5 dark:bg-components-cardDark"
+      role="tooltip"
+      class="rounded-md bg-components-card px-3 py-1 text-xs !m-0 dark:bg-components-cardDark"
       :style="floatingStyles"
     >
-      <slot name="content" />
+      {{ title }}
     </div>
   </transition>
 </template>
@@ -33,29 +34,20 @@
   const reference = ref<HTMLElement | null>(null);
   const floating = ref<HTMLElement | null>(null);
 
-  /* const { isClickedOutside } = useClickOutside(reference); */
   const open = ref(false);
 
-  const toggleOpen = () => {
-    open.value = !open.value;
-  };
-
   const { floatingStyles, isPositioned } = useFloating(reference, floating, {
-    middleware: [
-      shift(),
-      flip({ fallbackPlacements: ['bottom-end', 'left', 'right'], padding: 5 }),
-      offset(15),
-    ],
+    middleware: [shift(), flip({ fallbackPlacements: ['bottom', 'left', 'right'] }), offset(5)],
     open,
-    placement: 'bottom',
+    placement: 'top',
     whileElementsMounted: autoUpdate,
   });
-
-  /* watch(isClickedOutside, (value) => {
-    if (value) open.value = false;
-  }); */
 
   defineOptions({
     inheritAttrs: false,
   });
+
+  defineProps<{
+    title: string;
+  }>();
 </script>
