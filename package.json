@@ -30,7 +30,7 @@
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@sidebase/nuxt-auth": "0.6.3",
+    "@sidebase/nuxt-auth": "0.6.7",
     "@types/lint-staged": "^13.3.0",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
