@@ -101,7 +101,7 @@ export default defineNuxtConfig({
     dirs: ['composables/**'],
   },
   modules: [
-    '@nuxtjs/eslint-module',
+    '@nuxt/eslint',
     '@nuxt/image',
     '@nuxtjs/color-mode',
     '@unocss/nuxt',
@@ -121,5 +121,8 @@ export default defineNuxtConfig({
   },
   veeValidate: {
     autoImports: true,
+  },
+  eslint: {
+    checker: true,
   },
 });
