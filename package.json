@@ -34,7 +34,7 @@
     "@nuxtjs/color-mode": "^3.4.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@sidebase/nuxt-auth": "0.7.1",
+    "@sidebase/nuxt-auth": "0.7.2",
     "@types/eslint__js": "^8.42.3",
     "@types/lint-staged": "^13.3.0",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
@@ -67,6 +67,6 @@
     }
   },
   "dependencies": {
-    "next-auth": "~4.21.1"
+    "next-auth": "~4.24.0"
   }
 }
