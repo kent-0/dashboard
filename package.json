@@ -43,7 +43,7 @@
     "@unocss/nuxt": "^0.59.2",
     "@vee-validate/nuxt": "^4.12.6",
     "@vee-validate/yup": "^4.12.6",
-    "conventional-changelog-angular": "^7.0.0",
+    "conventional-changelog-angular": "^8.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-perfectionist": "^2.9.0",
