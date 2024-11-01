@@ -39,7 +39,7 @@ devDependencies:
     version: 1.5.1(vite@5.4.8)(vue@3.5.10)
   '@nuxt/eslint':
     specifier: ^0.4.0
-    version: 0.4.0(eslint@9.11.1)(typescript@5.6.2)(vite-plugin-eslint2@4.4.2)(vite@5.4.8)
+    version: 0.4.0(eslint@9.11.1)(typescript@5.6.2)(vite-plugin-eslint2@5.0.1)(vite@5.4.8)
   '@nuxt/eslint-config':
     specifier: ^0.4.0
     version: 0.4.0(eslint@9.11.1)(typescript@5.6.2)
@@ -125,8 +125,8 @@ devDependencies:
     specifier: ^0.0.2
     version: 0.0.2
   vite-plugin-eslint2:
-    specifier: ^4.4.0
-    version: 4.4.2(eslint@9.11.1)(vite@5.4.8)
+    specifier: ^5.0.0
+    version: 5.0.1(eslint@9.11.1)(vite@5.4.8)
   vue:
     specifier: ^3.4.21
     version: 3.5.10(typescript@5.6.2)
@@ -3026,7 +3026,7 @@ packages:
       - typescript
     dev: true
 
-  /@nuxt/eslint@0.4.0(eslint@9.11.1)(typescript@5.6.2)(vite-plugin-eslint2@4.4.2)(vite@5.4.8):
+  /@nuxt/eslint@0.4.0(eslint@9.11.1)(typescript@5.6.2)(vite-plugin-eslint2@5.0.1)(vite@5.4.8):
     resolution: {integrity: sha512-UtAt159f3CaQ8RdIeQ01PPafDZR3rn0EdCCA9z7RORdlvLwd9mfea79QwxVccEvZ4cycTwiZWiS3bsd5Oi3Bww==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
@@ -3052,7 +3052,7 @@ packages:
       mlly: 1.7.1
       pathe: 1.1.2
       unimport: 3.9.1
-      vite-plugin-eslint2: 4.4.2(eslint@9.11.1)(vite@5.4.8)
+      vite-plugin-eslint2: 5.0.1(eslint@9.11.1)(vite@5.4.8)
     transitivePeerDependencies:
       - bufferutil
       - magicast
@@ -4075,7 +4075,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.1.0
@@ -4108,7 +4108,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       estree-walker: 2.0.2
       magic-string: 0.30.10
       rollup: 4.18.0
@@ -4123,7 +4123,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       rollup: 4.18.0
     dev: true
 
@@ -4136,7 +4136,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
@@ -4154,7 +4154,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       magic-string: 0.30.10
       rollup: 4.18.0
     dev: true
@@ -4180,21 +4180,6 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
-    dev: true
-
-  /@rollup/pluginutils@5.1.0(rollup@4.18.0):
-    resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@types/estree': 1.0.6
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-      rollup: 4.18.0
     dev: true
 
   /@rollup/pluginutils@5.1.2(rollup@4.18.0):
@@ -4622,14 +4607,14 @@ packages:
   /@types/eslint@8.56.9:
     resolution: {integrity: sha512-W4W3KcqzjJ0sHg2vAq9vfml6OhsJ53TcUjUqfzzZf/EChUtwspszj/S0pzMxnfRcO55/iGq47dscXw71Fxc4Zg==}
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
     dev: true
 
   /@types/eslint@9.6.0:
     resolution: {integrity: sha512-gi6WQJ7cHRgZxtkQEoyHMppPjq9Kxo5Tjn2prSKDSmZrCz8TZ3jSRCeTJm+WoM+oB0WG37bRqLzaaU3q7JypGg==}
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
     dev: true
 
@@ -5017,7 +5002,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 7.14.1
       '@typescript-eslint/visitor-keys': 7.14.1
-      debug: 4.3.6
+      debug: 4.3.7
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -5039,7 +5024,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.6
+      debug: 4.3.7
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -11211,7 +11196,7 @@ packages:
       '@rollup/plugin-node-resolve': 15.2.3(rollup@4.18.0)
       '@rollup/plugin-replace': 5.0.7(rollup@4.18.0)
       '@rollup/plugin-terser': 0.4.4(rollup@4.18.0)
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       '@types/http-proxy': 1.17.14
       '@vercel/nft': 0.26.5
       archiver: 7.0.1
@@ -14114,7 +14099,7 @@ packages:
   /unimport@3.11.1:
     resolution: {integrity: sha512-DuB1Uoq01LrrXTScxnwOoMSlTXxyKcULguFxbLrMDFcE/CO0ZWHpEiyhovN0mycPt7K6luAHe8laqvwvuoeUPg==}
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       acorn: 8.12.1
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
@@ -14176,7 +14161,7 @@ packages:
   /unimport@3.9.1:
     resolution: {integrity: sha512-4gtacoNH6YPx2Aa5Xfyrf8pU2RdXjWUACb/eF7bH1AcZtqs+6ijbNB0M3BPENbtVjnCcg8tw9UJ1jQGbCzKA6g==}
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
       acorn: 8.12.1
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
@@ -14665,8 +14650,8 @@ packages:
       vscode-uri: 3.0.8
     dev: true
 
-  /vite-plugin-eslint2@4.4.2(eslint@9.11.1)(vite@5.4.8):
-    resolution: {integrity: sha512-QR+coY+88bnGco0xbDzzOEQYm2WndmEG5WK3i3UqzODnn6dY4/O4Ckl3MExCJzxIDIHM/KMMo8DS7S3JkXtBFg==}
+  /vite-plugin-eslint2@5.0.1(eslint@9.11.1)(vite@5.4.8):
+    resolution: {integrity: sha512-Pr/Df4mpYtKoYOFMRQonoDE/SH56ah2cbtjyQmRveh+Wz2pgk/RfTM3ApZ6xrAEpmIyBctfy5JoBmcWmikKTlg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/eslint': ^7.0.0 || ^8.0.0 || ^9.0.0-0
@@ -14680,7 +14665,6 @@ packages:
         optional: true
     dependencies:
       '@rollup/pluginutils': 5.1.2(rollup@4.18.0)
-      chokidar: 3.6.0
       debug: 4.3.7
       eslint: 9.11.1
       vite: 5.4.8(@types/node@22.7.4)
