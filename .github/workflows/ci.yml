@@ -17,7 +17,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Cache pnpm modules and nuxt build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.pnpm-store
@@ -48,7 +48,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Cache pnpm modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -76,7 +76,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Cache pnpm modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
