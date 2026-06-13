@@ -27,7 +27,7 @@
     "@julr/unocss-preset-forms": "^2.0.0",
     "@julr/unocss-preset-heropatterns": "^1.0.2",
     "@nuxt/devtools": "^1.1.5",
-    "@nuxt/eslint": "^0.4.0",
+    "@nuxt/eslint": "^1.0.0",
     "@nuxt/eslint-config": "^0.4.0",
     "@nuxt/image": "^1.5.0",
     "@nuxtjs/apollo": "5.0.0-alpha.14",
